@@ -6,6 +6,10 @@ const Product = require("../model/product.model");
 
 // post The all Products into the database at url (http://localhost:8080/products/add)
 
+Router.get("/" , async (req,res) => {
+  res.send("You are on get request.");
+})
+
 Router.post("/add", async (req, res) => {
   const loge = req.body;
   try {
