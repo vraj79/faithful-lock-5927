@@ -1,0 +1,29 @@
+.navbar {
+  height: 5rem;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid gray;
+  align-items: center;
+}
+.navItems {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+.navItems span:hover {
+  color: #20a87e;
+}
+.navItemsSale {
+  color: rgb(235, 143, 127);
+}
+.navItemsSale:hover{
+  color: rgb(235, 143, 127);
+}
+.navUser {
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+}
