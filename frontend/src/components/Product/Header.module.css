@@ -1,0 +1,8 @@
+.text{
+    font-size:1.25rem;
+    font-weight:bold
+}
+.text1,.text2:hover{
+    border-radius: 50%;
+    border: 2px solid teal;
+}
