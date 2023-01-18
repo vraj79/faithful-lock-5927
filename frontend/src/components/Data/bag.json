@@ -1,0 +1,58 @@
+[
+  {
+    "img1": "https://images.dailyobjects.com/marche/product-images/1201/all-beige-pedal-daypack-images/All-Beige-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-393,h-485,dpr-1",
+    "title": "All Beige Pedal Daypack",
+    "img2": "https://images.dailyobjects.com/marche/product-images/1201/all-beige-pedal-daypack-images/All-Beige-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-392,h-483,dpr-1",
+    "price": 1699,
+    "strike": 2999,
+    "category": "bag",
+
+    "stocks": 2
+  },
+  {
+    "img1": "https://images.dailyobjects.com/marche/product-images/1201/all-blue-pedal-daypack-images/All-Blue-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-393,h-485,dpr-1",
+    "title": "All Blue Pedal Daypack",
+    "img2": "https://images.dailyobjects.com/marche/product-images/1201/all-blue-pedal-daypack-images/All-Blue-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-392,h-483,dpr-1",
+    "price": 1299,
+    "strike": 2599,
+    "category": "bag",
+
+    "stocks": 5
+  },
+  {
+    "img1": "https://images.dailyobjects.com/marche/product-images/1201/all-red-pedal-daypack-images/All-Red-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-392,h-483,dpr-1",
+    "title": "All Red Pedal Daypack",
+    "img2": "https://images.dailyobjects.com/marche/product-images/1201/all-red-pedal-daypack-images/All-Red-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-392,h-483,dpr-1",
+    "price": 1699,
+    "strike": 2499,
+    "category": "bag",
+    "stocks": 4
+  },
+  {
+    "img1": "https://images.dailyobjects.com/marche/product-images/1201/all-mustard-pedal-daypack-images/All-Mustard-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-392,h-483,dpr-1",
+    "title": "All Mustard Pedal Daypack",
+    "img2": "https://images.dailyobjects.com/marche/product-images/1201/all-mustard-pedal-daypack-images/All-Mustard-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-392,h-483,dpr-1",
+    "price": 1599,
+    "strike": 2499,
+    "category": "bag",
+    "stocks": 1
+  },
+  {
+    "img1": "https://images.dailyobjects.com/marche/product-images/1201/all-olive-pedal-daypack-images/All-Olive-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-393,h-485,dpr-1",
+    "title": "All Olive Pedal Daypack",
+    "img2": "https://images.dailyobjects.com/marche/product-images/1201/all-olive-pedal-daypack-images/All-Olive-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-392,h-483,dpr-1",
+    "price": 1099,
+    "strike": 2999,
+    "category": "bag",
+    "stocks": 0
+  },
+  {
+    "img1": "https://images.dailyobjects.com/marche/product-images/1201/all-clove-pedal-daypack-images/All-Clove-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-393,h-485,dpr-1",
+    "title": "All Clove Pedal Daypack",
+    "img2": "https://images.dailyobjects.com/marche/product-images/1201/all-clove-pedal-daypack-images/All-Clove-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-392,h-483,dpr-1",
+    "price": 1999,
+    "strike": 2499,
+    "category": "bag",
+    "stocks": 2
+  }
+]
