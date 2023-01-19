@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import styles from './Homepage.module.css'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, Pagination } from "swiper";
+import { Autoplay, Navigation } from "swiper";
 import 'swiper/css';
 import "swiper/css/navigation";
+import "swiper/css/effect-coverflow";
+import { Box, Grid, GridItem, Heading, Image, useBreakpointValue } from '@chakra-ui/react';
+import Official from './Official';
 
 const shopCategories=[
   {id:1,
@@ -73,66 +76,78 @@ const newArrivals=[
   }
 ]
 
+
+
 const Homepage = () => {
+  const slideCount = useBreakpointValue({ sm:2,base: 1,md:3,lg: 4 })
+  const isDesktop = useBreakpointValue({ base: false,md:true, lg: true })
+
   return (
     <div className={styles.homepage}>
-      <div className={styles.firstHomeItem}>
-        <img src="https://images.dailyobjects.com/marche/assets/images/other/backpack-desktops.jpg?tr=cm-pad_crop,v-2,w-1349,dpr-1" alt="" />
-      </div>
-      <div className={styles.shopCategories}>
-        <div className={styles.cat_one}>
+      <Box className={styles.firstHomeItem}>
+        <Image src="https://images.dailyobjects.com/marche/assets/images/other/backpack-desktops.jpg?tr=cm-pad_crop,v-2,w-1349,dpr-1" alt="" />
+      </Box>
+
+      {/* Shop Categories */}
+      <Grid templateColumns={{ base: '100%', md: '20% 80%', lg: '20% 80%' }} className={styles.shopCategories}>
+        <GridItem className={styles.cat_one}>
           <p>SHOP CATEGORIES</p>
           <p>Now browse our selection of carefully curated products in sorted categories.</p>
-        </div>
-        <div className={styles.cat_two}>
+        </GridItem>
+        <GridItem className={styles.cat_two}>
         <Swiper
-              slidesPerView={4}
-              spaceBetween={0}
+              slidesPerView={slideCount}
+              spaceBetween={20}
               autoplay={{
                 delay: 1000,
               }}
-              pagination={{clickable:true}}
-              modules={[Pagination,Navigation,Autoplay]}
-              navigation={true}
+              modules={[Navigation,Autoplay]}
+              navigation={isDesktop}
               className="mySwiper"
               loop={true}
             >
               {shopCategories.map((ele) => (
                 <SwiperSlide key={ele.id}>
-                  <img width={"100%"} src={ele.url} alt="" />
+                  <Image width={"100%"} src={ele.url} alt="" />
                   <p>{ele.title}</p>
                 </SwiperSlide>
               ))}
             </Swiper>
-        </div>
-      </div>
+        </GridItem>
+      </Grid>
       <div className={styles.homeItems}>
-        <img src="https://images.dailyobjects.com/marche/assets/images/other/watchbands-desktops.jpg?tr=cm-pad_crop,v-2,w-1349,dpr-1" alt="" />
+        <Image src="https://images.dailyobjects.com/marche/assets/images/other/watchbands-desktops.jpg?tr=cm-pad_crop,v-2,w-1349,dpr-1" alt="" />
       </div>
-      <h2>STUDIO COLLECTIONS</h2>
-      <div className={styles.shopCollections}>
-        <div className={styles.shopCollectionsItems}>
-          <img src="https://images.dailyobjects.com/marche/assets/images/other/dremscape-banner-mob-02.jpg?tr=cm-pad_crop,v-2,w-421,dpr-1" alt="" />
+
+      {/* Studio Collections */}
+      <Heading className={styles.h2}>STUDIO COLLECTIONS</Heading>
+      <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={6} className={styles.shopCollections}>
+        <GridItem className={styles.shopCollectionsItems}>
+          <Image src="https://images.dailyobjects.com/marche/assets/images/other/dremscape-banner-mob-02.jpg?tr=cm-pad_crop,v-2,w-421,dpr-1" alt="" />
           <p>DREAMSCAPE</p>
           <p>A vivid dream journal that lets you carry your daydreaming stance into real life.</p>
           <p><Link className={styles.coll_link} to='/'>Shop Now</Link></p>
-        </div>
-        <div className={styles.shopCollectionsItems}>
-          <img src="https://images.dailyobjects.com/marche/assets/images/other/zodiac-collections.jpg?tr=cm-pad_crop,v-2,w-421,dpr-1" alt="" />
+        </GridItem>
+        <GridItem className={styles.shopCollectionsItems}>
+          <Image src="https://images.dailyobjects.com/marche/assets/images/other/zodiac-collections.jpg?tr=cm-pad_crop,v-2,w-421,dpr-1" alt="" />
           <p>ZODIAC</p>
           <p>A vivid dream journal that lets you carry your daydreaming stance into real life.</p>
           <p><Link className={styles.coll_link} to='/'>Shop Now</Link></p>
-        </div>
-        <div className={styles.shopCollectionsItems}>
-          <img src="https://images.dailyobjects.com/marche/assets/images/other/pixel-banner-4-02.jpg?tr=cm-pad_crop,v-2,w-421,dpr-1" alt="" />
+        </GridItem>
+        <GridItem className={styles.shopCollectionsItems}>
+          <Image src="https://images.dailyobjects.com/marche/assets/images/other/pixel-banner-4-02.jpg?tr=cm-pad_crop,v-2,w-421,dpr-1" alt="" />
           <p>PIXEL</p>
           <p>A reflection of modern pop-culture, this collection has a vintage appeal that evokes nostalgia.</p>
           <p ><Link className={styles.coll_link} to='/'>Shop Now</Link></p>
-        </div>
-      </div>
-      <div className={styles.firstHomeItem}>
-        <img src="https://images.dailyobjects.com/marche/assets/images/other/messenger-bags-desktops.jpg?tr=cm-pad_crop,v-2,w-1349,dpr-1" alt="" />
-      </div>
+        </GridItem>
+      </Grid>
+      <Grid className={styles.homeItems}>
+        <GridItem>
+        <Image src="https://images.dailyobjects.com/marche/assets/images/other/messenger-bags-desktops.jpg?tr=cm-pad_crop,v-2,w-1349,dpr-1" alt="" />
+        </GridItem>
+      </Grid>
+
+      {/* New Arrivals */}
       <div className={styles.shopCategories}>
         <div className={styles.cat_one}>
           <p>NEW ARRIVALS</p>
@@ -140,20 +155,19 @@ const Homepage = () => {
         </div>
         <div className={styles.cat_two}>
           <Swiper
-              slidesPerView={4}
-              spaceBetween={0}
+              slidesPerView={slideCount}
+              spaceBetween={20}
               autoplay={{
                 delay: 1000,
               }}
-              pagination={{clickable:true}}
-              modules={[Pagination,Navigation,Autoplay]}
-              navigation={true}
+              modules={[Navigation,Autoplay]}
+              navigation={isDesktop}
               className="mySwiper"
               loop={true}
             >
               {newArrivals.map((ele,i) => (
                 <SwiperSlide key={i}>
-                  <img width={"100%"} src={ele.url} alt="" />
+                  <Image width={"100%"} src={ele.url} alt="" />
                   <p style={{fontSize:"14px",color:"gray"}}>{ele.color}</p>
                   <p>{ele.title}</p>
                 </SwiperSlide>
@@ -161,18 +175,66 @@ const Homepage = () => {
             </Swiper>
         </div>
       </div>
-      <div className={styles.shopCollections}>
-        <div className={styles.shopCollectionsItems}>
-          <img src="https://images.dailyobjects.com/marche/assets/images/other/charging-ssolution.jpg?tr=cm-pad_crop,v-2,w-621,dpr-1" alt="" />
+      <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)', lg: 'repeat(2, 1fr)' }} gap={'10'} className={styles.shopCollections}>
+        <GridItem className={styles.shopCollectionsItems}>
+          <Image src="https://images.dailyobjects.com/marche/assets/images/other/charging-ssolution.jpg?tr=cm-pad_crop,v-2,w-621,dpr-1" alt="" />
           <p>CHARGING SOLUTIONS</p>
           <p><Link className={styles.coll_link} to='/'>Shop Now</Link></p>
-        </div>
-        <div className={styles.shopCollectionsItems}>
-          <img src="https://images.dailyobjects.com/marche/assets/images/other/work-eessentials.jpg?tr=cm-pad_crop,v-2,w-621,dpr-1" alt="" />
+        </GridItem>
+        <GridItem className={styles.shopCollectionsItems}>
+          <Image src="https://images.dailyobjects.com/marche/assets/images/other/work-eessentials.jpg?tr=cm-pad_crop,v-2,w-621,dpr-1" alt="" />
           <p>WORK ESSENTIALS</p>
           <p><Link className={styles.coll_link} to='/'>Shop Now</Link></p>
-        </div>
+        </GridItem>
+      </Grid>
+
+      {/* Collections */}
+      <Heading className={styles.h2}>COLLECTIONS</Heading>
+      <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={6} className={styles.shopCollections}>
+        <GridItem className={styles.shopCollectionsItems}>
+          <Image src="https://images.dailyobjects.com/marche/assets/images/other/collection-08-01.jpg?tr=cm-pad_crop,v-2,w-421,dpr-1" alt="" />
+          <p>08:01 COLLECTION</p>
+          <p>Features a range of chroniclers that let you preserve all brief encounters on your journey.</p>
+          <p><Link className={styles.coll_link} to='/'>Shop Now</Link></p>
+        </GridItem>
+        <GridItem className={styles.shopCollectionsItems}>
+          <Image src="https://images.dailyobjects.com/marche/assets/images/other/zootopia-Web.jpg?tr=cm-pad_crop,v-2,w-421,dpr-1" alt="" />
+          <p>DAILYOBJECTS X SMARTSTERS</p>
+          <p>A playful and functional range of indoor desk and storage solutions for children.</p>
+          <p><Link className={styles.coll_link} to='/'>Shop Now</Link></p>
+        </GridItem>
+        <GridItem className={styles.shopCollectionsItems}>
+          <Image src="https://images.dailyobjects.com/marche/assets/images/other/collection-tarp.jpg?tr=cm-pad_crop,v-2,w-421,dpr-1" alt="" />
+          <p>TARP COLLECTION</p>
+          <p>Urban-inspired carriers, made for free-spirited and powerful wearers.</p>
+          <p ><Link className={styles.coll_link} to='/'>Shop Now</Link></p>
+        </GridItem>
+      </Grid>
+      <div className={styles.homeItems}>
+        <Image src="https://images.dailyobjects.com/marche/assets/images/other/organisers-desktops.jpg?tr=cm-pad_crop,v-2,w-1349,dpr-1" alt="" />
       </div>
+      <div className={styles.homeItems}>
+        <Image src="https://images.dailyobjects.com/marche/assets/images/other/corporate-gifting-desktops.jpg?tr=cm-pad_crop,v-2,w-1349,dpr-1" alt="" />
+      </div>
+      
+      {/* Our Story */}
+      <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(1, 1fr)', lg: 'repeat(2, 1fr)' }} gap="50" className={styles.ourStory}>
+        <GridItem>
+          <h2 className={styles.h1}>OUR STORY</h2>
+          <p>Founded in 2012, DailyObjects is a design-obsessed lifestyle accessories brand committed to making your everyday carry #lessordinary.</p>
+          <p>You can look forward to a carefully-crafted range of products, made from long-lasting materials, with designs that stand out and make your life easy. With DailyObjects, let your lifestyle reflect your sensibilities as you go on to make your every day #lessordinary.</p>
+          <p ><Link className={styles.coll_link} to='/'>Read More</Link></p>
+        </GridItem>
+        <GridItem>
+          <Image style={{marginTop:"1.2rem"}} src="https://images.dailyobjects.com/marche/assets/images/other/Our-Story-updated01.jpg?tr=cm-pad_crop,v-2,w-788,dpr-1" alt=''/>
+        </GridItem>
+      </Grid>
+      <br />
+      <hr />
+
+      {/* dailyObjects Official */}
+      <Official/>
+      
     </div>
   )
 }

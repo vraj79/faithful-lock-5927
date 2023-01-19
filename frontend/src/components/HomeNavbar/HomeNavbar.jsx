@@ -3,8 +3,11 @@ import { ImUser } from "react-icons/im";
 import { FiSearch } from "react-icons/fi";
 
 import styles from "./HomeNavbar.module.css";
+import { useBreakpointValue } from "@chakra-ui/react";
 
 const HomeNavbar = () => {
+  const isDesktop = useBreakpointValue({ base: false, lg: true })
+
   return (
     <div>
       <div className={styles.navbar}>
@@ -14,7 +17,9 @@ const HomeNavbar = () => {
             alt=""
           />
         </div>
-        <div className={styles.navItems}>
+        {
+          isDesktop?(
+            <div className={styles.navItems}>
           <span>NEW ARRIVALS</span>
           <span>CASES & SLEEVES</span>
           <span>ACCESSORIES</span>
@@ -24,6 +29,8 @@ const HomeNavbar = () => {
           <span>COLLECTIONS</span>
           <span>GIFTING</span>
         </div>
+          ):<div></div>
+        }
         <div className={styles.navUser}>
           <HiOutlineShoppingBag size={25} />
           <ImUser size={25}/>

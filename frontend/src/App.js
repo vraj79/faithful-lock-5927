@@ -1,10 +1,14 @@
 import "./App.css";
-import AllRoutes from "./router/AllRoutes";
+import HomeNavbar from "./components/HomeNavbar/HomeNavbar";
+import Homepage from "./components/Homepage/Homepage";
+// import AllRoutes from "./router/AllRoutes";
 
 function App() {
   return (
     <div className="App">
-      <AllRoutes />
+      {/* <AllRoutes /> */}
+      <HomeNavbar/>
+      <Homepage/>
     </div>
   );
 }
