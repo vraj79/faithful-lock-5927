@@ -5,7 +5,7 @@ const Admin = require("../model/admin.model");
 const jwt = require("jsonwebtoken");
 const Router = express.Router();
 const key = process.env.KEY;
-
+Router.use(express.json());
 // admin sign-up with hase password in this url (http://localhost:8080/admin/admin-signup)
 
 Router.post("/admin-signup", async (req, res) => {
@@ -43,7 +43,7 @@ Router.post("/login", async (req, res) => {
       bcyrpt.compare(password, hase_pass, (err, result) => {
         if (result) {
           const token = jwt.sign({ adminID: admin[0]._id }, key);
-          res.send({ msg: "login successfull", token: token });
+          res.send({ msg: "login successfull", token: token, admin: admin });
         } else {
           res.status(400).send({ msg: "wrong credntials" });
         }
@@ -53,3 +53,5 @@ Router.post("/login", async (req, res) => {
     res.status(500).send({ msg: "wrong credntials" });
   }
 });
+
+module.exports = Router;

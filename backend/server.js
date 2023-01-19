@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const { connect } = require("./config/db");
 const PORT = process.env.PORT;
+const cors = require("cors");
+app.use(cors());
 app.use(express.json());
 
 //Import Products Route
