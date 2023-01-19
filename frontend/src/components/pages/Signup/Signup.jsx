@@ -11,10 +11,19 @@ const Signup = () => {
                      
                     <Input
                       mb="15px"
-                      type="email"
-                      placeholder='Enter Name'
+                      type="text"
+                      placeholder='Enter First Name'
                     />
                   </Box>
+
+                  <Box  w="50%" p={2} margin="auto">
+                     
+                     <Input
+                       mb="15px"
+                       type="text"
+                       placeholder='Enter Last Name'
+                     />
+                   </Box>
                   <Box  w="50%" p={2} margin="auto">
                      
                      <Input
@@ -32,19 +41,26 @@ const Signup = () => {
                        placeholder='Enter Password'
                      />
                    </Box>
+                   
 
                    <Box  w="50%" p={2} margin="auto">
                      
                      <Input
                        mb="15px"
-                       type="password"
-                       placeholder='Enter Age'
+                       type="Number"
+                       placeholder='Enter Mobile'
                      />
                    </Box>
 
-                   <Button bg="teal"  >Submit</Button>
+                   <Box  w="50%" p={2} textAlign="center"  margin="auto"  >
+                      <Button bg="teal" size="md"  alignItems="center">Submit</Button>
+                   
+                   </Box>
+                     
+              
+                      
      </div>
-
+         
      
     </>
   )
