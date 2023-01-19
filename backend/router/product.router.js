@@ -4,11 +4,62 @@ const Router = express.Router();
 //Import Products Module
 const Product = require("../model/product.model");
 
-// post The all Products into the database at url (http://localhost:8080/products/add)
+// Get all Products from the database at url (http://localhost:8080/products/desks)
 
-Router.get("/" , async (req,res) => {
-  res.send("You are on get request.");
-})
+Router.get("/desks" , async (req,res) => {
+  try {
+    const products = await Product.find({category : req.url});
+    res.send(products);
+  } catch (error) {
+    res.send({error:error});
+  }
+});
+
+// Get all Products from the database at url (http://localhost:8080/products/watch)
+
+Router.get("/watch" , async (req,res) => {
+  try {
+    const products = await Product.find({category : req.url});
+    res.send(products);
+  } catch (error) {
+    res.send({error:error});
+  }
+});
+
+// Get all Products from the database at url (http://localhost:8080/products/bag)
+
+Router.get("/bag" , async (req,res) => {
+  try {
+    const products = await Product.find({category : req.url});
+    res.send(products);
+  } catch (error) {
+    res.send({error:error});
+  }
+});
+
+// Get all Products from the database at url (http://localhost:8080/products/wallet)
+
+Router.get("/wallet" , async (req,res) => {
+  try {
+    const products = await Product.find({category : req.url});
+    res.send(products);
+  } catch (error) {
+    res.send({error:error});
+  }
+});
+
+// Get all Products from the database at url (http://localhost:8080/products/messengerbag)
+
+Router.get("/messengerbag" , async (req,res) => {
+  try {
+    const products = await Product.find({category : req.url});
+    res.send(products);
+  } catch (error) {
+    res.send({error:error});
+  }
+});
+
+// post The all Products into the database at url (http://localhost:8080/products/add)
 
 Router.post("/add", async (req, res) => {
   const loge = req.body;
