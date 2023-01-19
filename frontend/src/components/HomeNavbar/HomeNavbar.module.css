@@ -4,6 +4,7 @@
   justify-content: space-around;
   border: 1px solid gray;
   align-items: center;
+  max-width: 1366px;
 }
 .navItems {
   display: flex;
