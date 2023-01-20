@@ -31,25 +31,30 @@ const {userModel}=require("../model/user.model")
      }
  })
 
- userRouter.post("/signup",async(req,res)=>{
+ userRouter.post("/register",async(req,res)=>{
     const {email,password,first_name,last_name,mobile}=req.body
-     
-     try{
-         bcyrpt.hash(password,5,async(err,secure_pwd)=>{
-            if(err){
-                 
-                res.send("Wrong ")
-            }
-            else{
-                const user=new userModel( {email,password:secure_pwd,first_name,last_name,mobile})
-                await user.save()
-                res.send({msg:"User Register Successfully"})
-            }
-         })
-     }
-     catch(err){
-        res.send("Wrong Credentials")
-     }
+      const registeruser=await userModel.find({email})
+        if(registeruser[0].email===email){
+            res.send({msg:"Register userId"})
+        }
+       else{
+        try{
+            bcyrpt.hash(password,5,async(err,secure_pwd)=>{
+               if(err){
+                    
+                   res.send({msg:"Register Again"})
+               }
+               else{
+                   const user=new userModel( {email,password:secure_pwd,first_name,last_name,mobile})
+                   await user.save()
+                   res.send({msg:"User Register Successfully"})
+               }
+            })
+        }
+        catch(err){
+           res.send( {msg:"Register Again"})
+        }
+       }
     
 })
 
