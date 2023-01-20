@@ -9,12 +9,13 @@ import AdminLogin from "./AdminPage/AdminLogin";
 import AdminShowCart from "./AdminPage/AdminShowCart";
 import AdminShowProduct from "./AdminPage/AdminShowProduct";
 import AdminShowUser from "./AdminPage/AdminShowUser";
+import Homepage from "../components/Homepage/Homepage";
  
 
 const AllRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<p>Homepage</p>}></Route>
+      <Route path="/" element={<Homepage/>}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/admin-login" element={<AdminLogin />}></Route>
