@@ -1,6 +1,6 @@
 const express = require("express");
 const Router = express.Router();
-
+const adminAuth = require("../middleware/adminAuth.middleware");
 //Import Products Module
 const Product = require("../model/product.model");
 
@@ -47,61 +47,61 @@ Router.route("/").get(getAllProducts);
 
 // Get all Products from the database at url (http://localhost:8080/products/desks)
 
-Router.get("/desks" , async (req,res) => {
+Router.get("/desks", async (req, res) => {
   try {
-    const products = await Product.find({category : req.url});
+    const products = await Product.find({ category: req.url });
     res.send(products);
   } catch (error) {
-    res.send({error:error});
+    res.send({ error: error });
   }
 });
 
 // Get all Products from the database at url (http://localhost:8080/products/watch)
 
-Router.get("/watch" , async (req,res) => {
+Router.get("/watch", async (req, res) => {
   try {
-    const products = await Product.find({category : req.url});
+    const products = await Product.find({ category: req.url });
     res.send(products);
   } catch (error) {
-    res.send({error:error});
+    res.send({ error: error });
   }
 });
 
 // Get all Products from the database at url (http://localhost:8080/products/bag)
 
-Router.get("/bag" , async (req,res) => {
+Router.get("/bag", async (req, res) => {
   try {
-    const products = await Product.find({category : req.url});
+    const products = await Product.find({ category: req.url });
     res.send(products);
   } catch (error) {
-    res.send({error:error});
+    res.send({ error: error });
   }
 });
 
 // Get all Products from the database at url (http://localhost:8080/products/wallet)
-
-Router.get("/wallet" , async (req,res) => {
+Router.get("/wallet", async (req, res) => {
   try {
-    const products = await Product.find({category : req.url});
+    const products = await Product.find({ category: req.url });
     res.send(products);
   } catch (error) {
-    res.send({error:error});
+    res.send({ error: error });
   }
 });
 
 // Get all Products from the database at url (http://localhost:8080/products/messengerbag)
 
-Router.get("/messengerbag" , async (req,res) => {
+Router.get("/messengerbag", async (req, res) => {
   try {
-    const products = await Product.find({category : req.url});
+    const products = await Product.find({ category: req.url });
     res.send(products);
   } catch (error) {
-    res.send({error:error});
+    res.send({ error: error });
   }
 });
 
 // post The all Products into the database at url (http://localhost:8080/products/add)
 
+Router.use(adminAuth);
 Router.post("/add", async (req, res) => {
   const loge = req.body;
   try {
