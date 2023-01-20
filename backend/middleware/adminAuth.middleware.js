@@ -6,7 +6,6 @@ const adminAuth = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.KEY);
     if (decoded) {
       const adminID = decoded.adminID;
-      console.log(adminID);
       next();
     } else {
       res.send({ msg: "Please login First" });

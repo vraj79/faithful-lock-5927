@@ -7,21 +7,24 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 //Import user Route
-const {userRouter}=require("./router/user.router")
+const { userRouter } = require("./router/user.router");
 //Import Products Route
 const productsRouter = require("./router/product.router");
 //Import Admin Route
 const adminRouter = require("./router/admin.router");
+//Import Cart Route
+const cartRouter = require("./router/cart.routes");
 
 //for User Router
-app.use("/user",userRouter)
-
  
 // For Products Router
-// app.use("/products", productsRouter);
+app.use("/products", productsRouter);
 
 // For admin Router
-// app.use("/admin", adminRouter);
+app.use("/admin", adminRouter);
+
+//For Cart Router
+app.use("/cart", cartRouter);
 
 app.listen(PORT, async () => {
   try {
@@ -30,5 +33,5 @@ app.listen(PORT, async () => {
   } catch (error) {
     console.log("connection failed");
   }
-   console.log(`The Port is Running on ${PORT}`)
+  console.log(`The Port is Running on ${PORT}`);
 });

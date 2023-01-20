@@ -107,33 +107,17 @@ const AdminLogin = () => {
               <Input type="password" name="password" onChange={hanldeChange} />
             </FormControl>
             <Stack spacing={6} alignItems={"center"}>
-              {isLoading ? (
-                <Button
-                  isLoading
-                  loadingText="Loading"
-                  width={"200px"}
-                  bg={"green.700"}
-                  color={"white"}
-                  _hover={{
-                    bg: "green.600",
-                  }}
-                  type="submit"
-                >
-                  Login
-                </Button>
-              ) : (
-                <Button
-                  width={"200px"}
-                  bg={"green.700"}
-                  color={"white"}
-                  _hover={{
-                    bg: "green.600",
-                  }}
-                  type="submit"
-                >
-                  Login
-                </Button>
-              )}
+              <Button
+                width={"200px"}
+                bg={"green.700"}
+                color={"white"}
+                _hover={{
+                  bg: "green.600",
+                }}
+                type="submit"
+              >
+                Login
+              </Button>
             </Stack>
           </form>
         </Stack>

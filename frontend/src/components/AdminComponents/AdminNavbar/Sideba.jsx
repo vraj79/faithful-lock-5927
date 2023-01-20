@@ -25,7 +25,7 @@ const Sideba = ({ onClose, display }) => {
         w={{ base: "full", md: 60 }}
         display={display}
         pos="fixed"
-        h="full"
+        h={"full"}
       >
         <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
           <Box

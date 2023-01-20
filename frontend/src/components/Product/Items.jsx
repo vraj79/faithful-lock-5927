@@ -65,7 +65,7 @@ export default function Items({ data }) {
               {data.strike}
             </span>
           </Text>
-          <Text color="red" fontSize={{lg:"2xl",md:"lg",base:"lg"}} fontWeight="bold">
+          <Text color="red" fontSize={{lg:"lg",md:"md",base:"md"}} fontWeight="bold">
             FREE DUFFLE BAG / WALLET*
           </Text>
         </Stack>
