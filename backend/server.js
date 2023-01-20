@@ -9,12 +9,17 @@ app.use(express.json());
 const productsRouter = require("./router/product.router");
 //Import Admin Route
 const adminRouter = require("./router/admin.router");
+//Import Cart Route
+const cartRouter = require("./router/cart.routes");
 
 // For Products Router
 app.use("/products", productsRouter);
 
 // For admin Router
-app.use("/admin", adminRouter);
+// app.use("/admin", adminRouter);
+
+//For Cart Router
+app.use("/cart" , cartRouter);
 
 app.listen(PORT, async () => {
   try {
