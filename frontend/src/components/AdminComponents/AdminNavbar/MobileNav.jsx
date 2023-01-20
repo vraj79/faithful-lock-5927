@@ -20,7 +20,7 @@ import { adminLogout } from "../../../redux/AdminLogin/adminLogin.action";
 import { Navigate } from "react-router-dom";
 const MobileNav = ({ onOpen }) => {
   const { isAuth, data } = useSelector((store) => store.adminAuth);
-  console.log(data);
+  const { admin } = data;
   const dispatch = useDispatch();
   const handleLoginClick = () => {
     if (isAuth) {
@@ -74,7 +74,7 @@ const MobileNav = ({ onOpen }) => {
               _focus={{ boxShadow: "none" }}
             >
               <HStack>
-                <Avatar size={"sm"} src={data[0].avtar} />
+                <Avatar size={"sm"} src={admin[0].avtar} />
                 <VStack
                   display={{ base: "none", md: "flex" }}
                   alignItems="flex-start"
@@ -82,7 +82,7 @@ const MobileNav = ({ onOpen }) => {
                   ml="2"
                 >
                   <Text fontSize="sm">
-                    {data[0].first_name} {data[0].last_name}
+                    {admin[0].first_name} {admin[0].last_name}
                   </Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
