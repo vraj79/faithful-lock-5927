@@ -12,6 +12,8 @@ const {userRouter}=require("./router/user.router")
 const productsRouter = require("./router/product.router");
 //Import Admin Route
 const adminRouter = require("./router/admin.router");
+//Import Cart Route
+const cartRouter = require("./router/cart.routes");
 
 //for User Router
 app.use("/user",userRouter)
@@ -20,6 +22,12 @@ app.use("/user",userRouter)
 
 // For admin Router
 // app.use("/admin", adminRouter);
+<<<<<<< HEAD
+
+//For Cart Router
+app.use("/cart" , cartRouter);
+=======
+>>>>>>> ded538f7bcfeecc643f17df1a827699ff4fba2b9
 
 app.listen(PORT, async () => {
   try {
