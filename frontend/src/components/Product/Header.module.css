@@ -1,8 +1,26 @@
 .text{
-    font-size:1.25rem;
+    font-size:1rem;
     font-weight:bold
 }
 .text1,.text2:hover{
     border-radius: 50%;
     border: 2px solid teal;
+}
+.categ{
+    justify-content: center;align-items: center;
+    /* flex-direction: column; */
+}
+.categ>div{
+    justify-content: center;align-items: center;
+}
+.categ>div>img{
+    width: 8vh;
+    height: 8vh;
+}
+.main>div:last-child{
+    width: 40vh;
+    margin-left: auto;
+}
+.main>div:last-child>select{
+    width: 100px;
 }

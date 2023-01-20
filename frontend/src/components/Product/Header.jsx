@@ -4,20 +4,21 @@ import {
   HStack,
   Image,
   Select,
+  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import Styles from "./Header.module.css";
 
-export default function Header() {
+export default function Header({title}) {
   return (
-    <VStack w={"100%"} justifyContent="center" spacing={20}>
-      <Heading as="h1" size="4xl" noOfLines={1}>
-        New Arrivals
+    <VStack w={"100%"} justifyContent="center" spacing={7} className={Styles.main}>
+      <Heading as="h1" size="2xl" noOfLines={1}>
+        {title}
       </Heading>
-      <HStack spacing={10} border="1px solid red">
-        <VStack justifyContent="center" alignItems="center" spacing={5}>
+      <Box spacing={5} className={Styles.categ} display={{lg:"flex",md:"flex",base:"block"}}>
+        <VStack justifyContent="center" alignItems="center" spacing={1}>
           <Image
             src="https://images.dailyobjects.com/marche/icons/new-arrival/all.png?tr=cm-pad_resize,v-2,w-70,h-70,dpr-1"
             alt="All"
@@ -25,7 +26,7 @@ export default function Header() {
           />
           <Text className={Styles.text}>All</Text>
         </VStack>
-        <VStack>
+        <VStack justifyContent="center" alignItems="center" spacing={1}>
           <Image
             src="https://images.dailyobjects.com/marche/assets/images/other/filter-icon.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1"
             alt="bag"
@@ -33,7 +34,7 @@ export default function Header() {
           />
           <Text className={Styles.text}>Pedal Backpack</Text>
         </VStack>
-        <VStack>
+        <VStack justifyContent="center" alignItems="center" spacing={1}>
           <Image
             src="https://images.dailyobjects.com/marche/icons/category/platrorm-desk-collection.png?tr=cm-pad_resize,v-2,w-70,h-70,dpr-1"
             alt="desk"
@@ -41,7 +42,7 @@ export default function Header() {
           />
           <Text className={Styles.text}>Desks</Text>
         </VStack>
-        <VStack>
+        <VStack justifyContent="center" alignItems="center" spacing={1}>
           <Image
             src="https://images.dailyobjects.com/marche/icons/category/watchbands-filter-icon-for-new-arrival.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1"
             alt="watch"
@@ -49,11 +50,12 @@ export default function Header() {
           />
           <Text className={Styles.text}>Watchbands</Text>
         </VStack>
-      </HStack>
+      </Box>
       <HStack>
+        <Text as="h3">Fillter</Text>
         <Select placeholder="Select Filter option">
           <option value="LTH">Low to High</option>
-          <option value="option2">Option 2</option>
+          <option value="HTL">High to Low</option>
           <option value="option3">Option 3</option>
         </Select>
       </HStack>
