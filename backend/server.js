@@ -16,7 +16,7 @@ const adminRouter = require("./router/admin.router");
 const cartRouter = require("./router/cart.routes");
 
 //for User Router
- 
+ app.use("/user",userRouter)
 // For Products Router
 app.use("/products", productsRouter);
 

@@ -1,16 +1,20 @@
-import { REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./userLogin.type";
+ 
 import axios from "axios";
-
+import { LOGOUT_USER_SUCCESS, USER_LOGIN_ERROR, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS } from "./userLogin.type";
+const Url = "http://localhost:8080";
 
  
- export const registerAPI = (creds) => (dispatch) => {
-    dispatch({ type:REGISTER_REQUEST });
-    axios
-      .post("http://localhost:8080/user/signuP", creds)
-      .then((r) => {
-        dispatch({ type:REGISTER_SUCCESS});
-      })
-      .catch((e) => dispatch({ type:REGISTER_FAILURE}));
+ export const Userlogin = (creds) => async(dispatch) => {
+    dispatch({ type:USER_LOGIN_REQUEST});
+      try{
+          let res= await axios.post(`${Url}/user/login`,creds)
+            dispatch({type:USER_LOGIN_SUCCESS, payload:res.data});
+             
+      }
+      catch(err){
+               dispatch({type:USER_LOGIN_ERROR})
+      }
   };
 
+  export const userLogout = () => ({ type: LOGOUT_USER_SUCCESS });
   

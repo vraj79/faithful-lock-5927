@@ -1,7 +1,72 @@
-import { Button, Flex, FormControl, FormLabel, Heading, Input, Stack ,Image} from '@chakra-ui/react'
+import { Button, Flex, FormControl, FormLabel, Heading, Input, Stack ,Image, useToast} from '@chakra-ui/react'
 import React from 'react'
-
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation,useNavigate } from 'react-router-dom'
+import { Userlogin } from '../../../redux/UserLogin/userLoginaction'
+ 
 const Login = () => {
+
+  const [login,SetLogin]=useState({})
+  const dispatch = useDispatch();
+     
+  const toast=useToast()
+    const {isAuth,isAuthError,isAuthLoading  } =useSelector((store)=>store.loginAuth)
+  
+    
+    const {state} = useLocation();
+    const navigate = useNavigate();
+    
+     
+   
+  const handlechange=(e)=>{
+     const {name,value}=e.target
+     SetLogin({
+      ...login,
+      [name]:value
+     })
+  }
+console.log(state)
+  const HandleSubmit=(e)=>{
+    e.preventDefault()
+    dispatch(Userlogin(login));
+     
+  }
+
+   useEffect(()=>{
+     if(isAuth){
+      if (state===null) {
+        // console.log(state.form);
+        navigate("/");
+
+      }else if(state!==null){
+        navigate(state.from, { replace: true });
+
+        toast({
+          title: "Success",
+          description: "Welcome To The Login Dashboard",
+          status: "success",
+          duration: 2000,
+          position: "top",
+          isClosable: true,
+        });
+      }
+     }
+     if(isAuthError){
+      toast({
+        title: "Something Went Wrong ",
+        description: "You Are Note Admin & Enter Right Credential",
+        status: "error",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+     }
+   },[isAuth,isAuthError])
+    //  useEffect(()=>{
+
+    //  },[HandleSubmit])
   return (
     <> 
     <div>
@@ -32,7 +97,7 @@ const Login = () => {
           <Heading lineHeight={1.1} fontSize={{ base: "2xl", md: "3xl" }}>
             Login
           </Heading>
-          <form   style={{ width: "100%" }}>
+          <form   style={{ width: "100%" }} onSubmit={HandleSubmit}>
             <FormControl id="email" isRequired pb={"20px"}>
               <FormLabel fontSize={"18px"}>Email address</FormLabel>
               <Input
@@ -40,12 +105,12 @@ const Login = () => {
                 _placeholder={{ color: "gray.500" }}
                 type="email"
                 name="email"
-                
+                onChange={handlechange}
               />
             </FormControl>
             <FormControl id="password" isRequired pb={"20px"}>
               <FormLabel fontSize={"18px"}>Password</FormLabel>
-              <Input type="password" name="password"   />
+              <Input type="password" name="password"  onChange={handlechange}  />
             </FormControl>
             <Stack spacing={6} alignItems={"center"}>
               

@@ -14,7 +14,7 @@ const {userModel}=require("../model/user.model")
             bcyrpt.compare(password,user[0].password,(err,result)=>{
                 if(result){
                     var token=jwt.sign({course:"backend"},process.env.KEY)
-                    res.send({msg:'Login Done',"token":token})
+                    res.send({msg:'Login Done',"token":token,user:user[0]})
                 }
                 else{
                     res.send("Wrong Credentials")
@@ -32,10 +32,12 @@ const {userModel}=require("../model/user.model")
  })
 
  userRouter.post("/register",async(req,res)=>{
-    const {email,password,first_name,last_name,mobile}=req.body
-      const registeruser=await userModel.find({email})
-        if(registeruser[0].email===email){
-            res.send({msg:"Register userId"})
+    let {email,password,first_name,last_name,mobile}=req.body
+   
+      const registeruser=await userModel.findOne({email})
+       
+        if(registeruser?.email){
+            res.send({msg:"User already exists"    })
         }
        else{
         try{
