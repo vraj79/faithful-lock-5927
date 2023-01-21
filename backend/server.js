@@ -18,7 +18,7 @@ const cartRouter = require("./router/cart.routes");
 const wishlistRouter = require("./router/wishlist.route");
 
 //for User Router
-app.use("/user", userRouter);
+ app.use("/user",userRouter)
 // For Products Router
 app.use("/products", productsRouter);
 

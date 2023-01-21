@@ -1,26 +1,32 @@
-.text{
-    font-size:1rem;
-    font-weight:bold
+.text {
+  font-size: 1rem;
+  font-weight: bold;
 }
-.text1,.text2:hover{
-    border-radius: 50%;
-    border: 2px solid teal;
+.text1 {
+  border-radius: 50%;
 }
-.categ{
-    justify-content: center;align-items: center;
-    /* flex-direction: column; */
+.text1:hover,.text2 {
+  border: 4px solid teal;
 }
-.categ>div{
-    justify-content: center;align-items: center;
+.categ {
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  /* border: 1px solid black; */
+  gap: 20px;
 }
-.categ>div>img{
-    width: 8vh;
-    height: 8vh;
+.categ > div {
+  justify-content: center;
+  align-items: center;
 }
-.main>div:last-child{
-    width: 40vh;
-    margin-left: auto;
+.categ > div > img {
+  width: 8vh;
+  height: 8vh;
 }
-.main>div:last-child>select{
-    width: 100px;
+.main > div:last-child {
+  width: 40vh;
+  margin-left: auto;
+}
+.main > div:last-child > select {
+  width: 100px;
 }

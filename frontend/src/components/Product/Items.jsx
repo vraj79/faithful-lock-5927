@@ -15,6 +15,7 @@ import { BsHeartFill } from "react-icons/bs";
 //   stocks: 0,
 // };
 export default function Items({ data }) {
+  // console.log(data.category=="bag");
   const [whit, setWhit] = useState(true);
   const ref = useRef(null);
   const ChangeImage1 = () => {
@@ -53,21 +54,23 @@ export default function Items({ data }) {
           <Text color="gray"  fontSize={{lg:"md",md:"sm",base:"xs"}}>
             {data.title}
           </Text>
-          <Text color="black" fontSize={{lg:"3xl",md:"2xl",base:"xl"}} fontWeight="bold">
+          <Text color="black" fontSize={{lg:"2xl",md:"xl",base:"xl"}} fontWeight="bold">
             Rs.{data.price}
             <span
               style={{
                 color: "gray",
                 textDecoration: "line-through",
                 marginLeft: "20px",
+                fontSize:"1.25rem"
               }}
             >
               {data.strike}
             </span>
           </Text>
-          <Text color="red" fontSize={{lg:"lg",md:"md",base:"md"}} fontWeight="bold">
-            FREE DUFFLE BAG / WALLET*
-          </Text>
+          
+          <Text color="red" fontSize={{ lg: "md", md: "md", base: "md" }} fontWeight="bold">
+              FREE DUFFLE BAG / WALLET*
+            </Text>
         </Stack>
       </CardFooter>
       {whit ? (

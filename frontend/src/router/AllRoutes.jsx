@@ -10,16 +10,27 @@ import AdminShowCart from "./AdminPage/AdminShowCart";
 import AdminShowProduct from "./AdminPage/AdminShowProduct";
 import AdminShowUser from "./AdminPage/AdminShowUser";
 import Homepage from "../components/Homepage/Homepage";
- 
+import AdminAddPoductPage from "./AdminPage/AdminAddPoductPage";
+import Bag from "../components/Product/Bag";
+import Wallet from "../components/Product/Wallet";
+import Desk from "../components/Product/Desk";
+import Watch from "../components/Product/Watch";
+import PageNotFound from "../components/Product/404";
+import UserRequireAuth from "../hoc/UserRequireAuth";
 
 const AllRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Homepage/>}></Route>
+      <Route path="/" element={<Homepage />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/admin-login" element={<AdminLogin />}></Route>
-      <Route path="/newarrival" element={<NewProduct/>}/>
+      <Route path="/newarrival" element={<NewProduct />} />
+      <Route path="/bag" element={<UserRequireAuth><Bag/></UserRequireAuth>}/>
+      <Route path="/wallet" element={<Wallet/>}/>
+      <Route path="/desks" element={<Desk/>}/>
+      <Route path="/watch" element={<Watch/>}/>
+      <Route path="*" element={<PageNotFound/>}/>
       <Route
         path="/admin"
         element={
@@ -49,6 +60,14 @@ const AllRoutes = () => {
         element={
           <AdminRequireAuth>
             <AdminShowCart />
+          </AdminRequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/admin/addProduct"
+        element={
+          <AdminRequireAuth>
+            <AdminAddPoductPage />
           </AdminRequireAuth>
         }
       ></Route>
