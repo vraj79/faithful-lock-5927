@@ -29,7 +29,7 @@ export default function NewProduct() {
     if (loader.current) observer.observe(loader.current);
   }, [handleObserver]);
 
-
+  console.log(list);
 if(query){list=list.filter((elem)=>elem.category===query)}
   if (sortdata === "LTH") {
     list = list.sort((a, b) => a.price - b.price);
