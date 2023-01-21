@@ -14,7 +14,7 @@ const {userModel}=require("../model/user.model")
             bcyrpt.compare(password,user[0].password,(err,result)=>{
                 if(result){
                     var token=jwt.sign({course:"backend"},process.env.KEY)
-                    res.send({msg:'Login Done',"token":token})
+                    res.send({msg:'Login Done',"token":token,user:user[0]})
                 }
                 else{
                     res.send("Wrong Credentials")
@@ -31,25 +31,32 @@ const {userModel}=require("../model/user.model")
      }
  })
 
- userRouter.post("/signup",async(req,res)=>{
-    const {email,password,first_name,last_name,mobile}=req.body
-     
-     try{
-         bcyrpt.hash(password,5,async(err,secure_pwd)=>{
-            if(err){
-                 
-                res.send("Wrong ")
-            }
-            else{
-                const user=new userModel( {email,password:secure_pwd,first_name,last_name,mobile})
-                await user.save()
-                res.send({msg:"User Register Successfully"})
-            }
-         })
-     }
-     catch(err){
-        res.send("Wrong Credentials")
-     }
+ userRouter.post("/register",async(req,res)=>{
+    let {email,password,first_name,last_name,mobile}=req.body
+   
+      const registeruser=await userModel.findOne({email})
+       
+        if(registeruser?.email){
+            res.send({msg:"User already exists"    })
+        }
+       else{
+        try{
+            bcyrpt.hash(password,5,async(err,secure_pwd)=>{
+               if(err){
+                    
+                   res.send({msg:"Register Again"})
+               }
+               else{
+                   const user=new userModel( {email,password:secure_pwd,first_name,last_name,mobile})
+                   await user.save()
+                   res.send({msg:"User Register Successfully"})
+               }
+            })
+        }
+        catch(err){
+           res.send( {msg:"Register Again"})
+        }
+       }
     
 })
 
