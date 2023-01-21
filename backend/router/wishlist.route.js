@@ -1,8 +1,7 @@
 const express = require("express");
-const CartItem = require("../model/cartItem.model");
 const { userModel } = require("../model/user.model");
 
-const cartRouter = express.Router();
+const wishlistRouter = express.Router();
 
 // -------------------------------------------------------------
 const createProduct=async(req,res,next)=>{
@@ -11,10 +10,10 @@ const createProduct=async(req,res,next)=>{
         // const savedproduct=await product.save();
         try {
             let user = await userModel.findById({_id:userId});
-            let cart = user.cartitem;
+            let wishlist = user.wishlist;
             console.log("this is from cart and this is old user:- " , user  , cart);
-            cart = [...cart,req.body];
-            await userModel.findByIdAndUpdate({_id:userId},{cartitem:cart});
+            wishlist = [...wishlist,req.body];
+            await userModel.findByIdAndUpdate({_id:userId},{wishlist:wishlist});
             let sameuser = await userModel.findById({_id:userId});
             console.log("this is from cart and this is new user:- " , sameuser);
         } catch (error) {
@@ -26,8 +25,8 @@ const createProduct=async(req,res,next)=>{
     }
 }
 
-// route for the add the data in to cart of perticuler user.(http://localhost:8080/cart/add/:userId);
-cartRouter.post("/add/:userId",createProduct);
+// route for the add the data in to wishlist of perticuler user.(http://localhost:8080/wishlist/add/:userId);
+wishlistRouter.post("/add/:userId",createProduct);
 
 
 
@@ -39,12 +38,12 @@ const deleteProduct=async(req,res,next)=>{
         // const savedproduct=await product.save();
         try {
             let user = await userModel.findById({_id:userId});
-            let cart = user.cartitem;
+            let wishlist = user.wishlist;
             console.log("this is from cart and this is old user:- " , user  , cart);
-            cart = cart.filter((elem) => {
+            wishlist = wishlist.filter((elem) => {
                 return elem._id !== req.body._id;
             });
-            await userModel.findByIdAndUpdate({_id:userId},{cartitem:cart});
+            await userModel.findByIdAndUpdate({_id:userId},{wishlist:wishlist});
             let sameuser = await userModel.findById({_id:userId});
             console.log("this is from cart and this is new user:- " , sameuser);
         } catch (error) {
@@ -56,19 +55,12 @@ const deleteProduct=async(req,res,next)=>{
     }
 }
 
-// route for the delete the data in to cart of perticuler user.(http://localhost:8080/cart/delete/:userId);
-cartRouter.post("/delete/:userId",deleteProduct);
-
-
-// cartRouter.delete("/delete/:id" , async(req,res) => {
-//     const ID = req.params.id;
-//     try {
-//         res.send("updated deleted successfully..");
-//     } catch (error) {
-//         res.send({error : error});
-//     }
-// })
+// route for the delete the data in to wishlist of perticuler user.(http://localhost:8080/wishlist/delete/:userId);
+wishlistRouter.post("/delete/:userId",deleteProduct);
 
 
 
-module.exports = cartRouter;
+
+
+
+module.exports = wishlistRouter;
