@@ -10,16 +10,16 @@ import AdminShowCart from "./AdminPage/AdminShowCart";
 import AdminShowProduct from "./AdminPage/AdminShowProduct";
 import AdminShowUser from "./AdminPage/AdminShowUser";
 import Homepage from "../components/Homepage/Homepage";
- 
+import AdminAddPoductPage from "./AdminPage/AdminAddPoductPage";
 
 const AllRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Homepage/>}></Route>
+      <Route path="/" element={<Homepage />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/admin-login" element={<AdminLogin />}></Route>
-      <Route path="/newarrival" element={<NewProduct/>}/>
+      <Route path="/newarrival" element={<NewProduct />} />
       <Route
         path="/admin"
         element={
@@ -49,6 +49,14 @@ const AllRoutes = () => {
         element={
           <AdminRequireAuth>
             <AdminShowCart />
+          </AdminRequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/admin/addProduct"
+        element={
+          <AdminRequireAuth>
+            <AdminAddPoductPage />
           </AdminRequireAuth>
         }
       ></Route>

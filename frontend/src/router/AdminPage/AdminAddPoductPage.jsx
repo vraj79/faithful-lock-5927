@@ -1,8 +1,9 @@
 import { Box, Container } from "@chakra-ui/react";
 import React from "react";
 import Navbar from "../../components/AdminComponents/AdminNavbar/Navbar";
+import AdminAddProduct from "../../components/AdminComponents/AdminProduct/AdminAddProduct";
 
-const AdminDshboardPage = () => {
+function AdminAddPoductPage() {
   return (
     <div>
       <Navbar />
@@ -11,13 +12,13 @@ const AdminDshboardPage = () => {
           maxW={"80%"}
           margin={"auto"}
           mr={"25px"}
-          border={"1px solid red"}
+          //   border={"1px solid red"}
         >
-          <h1>Dashboard</h1>
+          <AdminAddProduct />
         </Container>
       </Box>
     </div>
   );
-};
+}
 
-export default AdminDshboardPage;
+export default AdminAddPoductPage;
