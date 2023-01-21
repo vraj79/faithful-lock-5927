@@ -9,7 +9,8 @@ const cartItemSchema = mongoose.Schema({
   maincategory: String,
   stock: Number,
   img2: String,
-  quantity: {type : Number , default : 1}
+  quantity: {type : Number , default : 1},
+  userID:String,
 });
 const CartItem = mongoose.model("cartItem", cartItemSchema);
 module.exports = CartItem;
