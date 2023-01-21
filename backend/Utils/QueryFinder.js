@@ -23,6 +23,9 @@ class QueryFinder{
             console.log("in the decending if");
             this.query = this.query.find().sort({price : -1});
             return this;
+        }else if(this.queryStr.sort && this.queryStr.sort === "reset"){
+            this.query = this.query.find();
+            return this;
         }else{
             this.query = this.query;
             return this;
