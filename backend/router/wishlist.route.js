@@ -26,6 +26,7 @@ const createProduct=async(req,res,next)=>{
 }
 
 // route for the add the data in to wishlist of perticuler user.(http://localhost:8080/wishlist/add/:userId);
+// route for the add the data in to wishlist of perticuler user.(http://localhost:8080/wishlist/add/:userId);
 wishlistRouter.post("/add/:userId",createProduct);
 
 
