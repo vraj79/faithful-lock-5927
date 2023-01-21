@@ -16,6 +16,8 @@ import Wallet from "../components/Product/Wallet";
 import Desk from "../components/Product/Desk";
 import Watch from "../components/Product/Watch";
 import PageNotFound from "../components/Product/404";
+import Sales from "../components/Product/Sales";
+import LodingPage from "../components/Product/LodingPage";
 
 const AllRoutes = () => {
   return (
@@ -29,6 +31,8 @@ const AllRoutes = () => {
       <Route path="/wallet" element={<Wallet/>}/>
       <Route path="/desks" element={<Desk/>}/>
       <Route path="/watch" element={<Watch/>}/>
+      <Route path="/sale" element={<Sales/>}/>
+      <Route path="/lod" element={<LodingPage/>}/>
       <Route path="*" element={<PageNotFound/>}/>
       <Route
         path="/admin"
