@@ -31,11 +31,16 @@ const userschema=mongoose.Schema({
     role:{
         type:String,
         default:"user"
+    },
+    orderlist:{
+        type:Array
     }
+     
 
     
 },{
      versionKey: false,
+     timestamps:true
 }
 
 )

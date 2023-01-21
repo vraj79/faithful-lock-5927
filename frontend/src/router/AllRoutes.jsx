@@ -16,6 +16,7 @@ import Wallet from "../components/Product/Wallet";
 import Desk from "../components/Product/Desk";
 import Watch from "../components/Product/Watch";
 import PageNotFound from "../components/Product/404";
+import UserRequireAuth from "../hoc/UserRequireAuth";
 
 const AllRoutes = () => {
   return (
@@ -25,7 +26,7 @@ const AllRoutes = () => {
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/admin-login" element={<AdminLogin />}></Route>
       <Route path="/newarrival" element={<NewProduct />} />
-      <Route path="/bag" element={<Bag/>}/>
+      <Route path="/bag" element={<UserRequireAuth><Bag/></UserRequireAuth>}/>
       <Route path="/wallet" element={<Wallet/>}/>
       <Route path="/desks" element={<Desk/>}/>
       <Route path="/watch" element={<Watch/>}/>
