@@ -14,4 +14,4 @@ const Authenticate = (req,res,next) => {
   
 }
 
-export default  Authenticate
+module.exports= Authenticate

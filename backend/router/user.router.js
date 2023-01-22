@@ -58,6 +58,17 @@ const {userModel}=require("../model/user.model")
         }
        }
     
+ })
+userRouter.get("/:id", async (req, res) => {
+    const id = req.params.id;
+    
+    try{
+        const user=await userModel.find({_id:id})
+        res.send({user:user})
+    }
+    catch(err){
+        res.send("Error")
+    }
 })
 
 userRouter.patch("/edit/:id",async(req,res)=>{

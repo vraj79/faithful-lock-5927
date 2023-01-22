@@ -6,7 +6,7 @@ const PORT = process.env.PORT;
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
-const {Authenticate}=require("./middleware/userAuth.middleware")
+const Authenticate=require("./middleware/userAuth.middleware")
 //Import user Route
 const { userRouter } = require("./router/user.router");
 //Import Products Route
@@ -21,7 +21,7 @@ const Router=require("./router/alluser.router")
 app.use("/alluser",Router)
 //for User Router
  app.use("/user",userRouter)
- app.use(Authenticate)
+//  app.use(Authenticate)
 // For Products Router
 app.use("/products", productsRouter);
 
