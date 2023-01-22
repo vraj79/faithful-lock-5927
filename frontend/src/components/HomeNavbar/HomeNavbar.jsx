@@ -23,18 +23,18 @@ const HomeNavbar = () => {
             <div className={styles.navItems}>
 
           <Link to="/newarrival"><span>NEW ARRIVALS</span></Link>
-          <Link to="wallet"><span>WALLETS</span></Link>
-          <Link to="desks"><span>DESKS</span></Link>
-          <Link to="sale"><span className={styles.navItemsSale}>SALE</span></Link>
-          <Link to="bag"><span>BAGS</span></Link>
-          <Link to="watch"><span>WATCH</span></Link>
+          <Link to="/wallet"><span>WALLETS</span></Link>
+          <Link to="/desks"><span>DESKS</span></Link>
+          <Link to="/sale"><span className={styles.navItemsSale}>SALE</span></Link>
+          <Link to="/bag"><span>BAGS</span></Link>
+          <Link to="/watch"><span>WATCH</span></Link>
 
         </div>
           ):<div></div>
         }
         <div className={styles.navUser}>
           <HiOutlineShoppingBag size={25} />
-          <Link to="login"><ImUser size={25}/></Link>
+          <Link to="/login"><ImUser size={25}/></Link>
 
           <HiOutlineShoppingBag onClick={()=>navigate("/cart")} size={25} />
           <ImUser size={25}/>

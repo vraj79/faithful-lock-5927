@@ -126,6 +126,15 @@ const AllRoutes = () => {
           </>
         }
       />
+      <Route
+        path="/products/:id"
+        element={
+          <>
+            <HomeNavbar />
+            <SingleProduct />
+          </>
+        }
+      />
       <Route path="*" element={<PageNotFound />} />
 
       <Route
