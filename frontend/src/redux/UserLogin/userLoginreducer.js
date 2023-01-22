@@ -7,7 +7,7 @@ const initialstate={
     isAuth: false,
     isAuthLoading:false,
     isAuthError:false,
-    user:{}
+    user: JSON.parse(localStorage.getItem("user"))|| {}
 }
 
 const LoginReducer=(state=initialstate,action)=>{
@@ -22,7 +22,8 @@ const LoginReducer=(state=initialstate,action)=>{
     case USER_LOGIN_SUCCESS:{
          
         localStorage.setItem('usertoken',payload.token)
-        console.log(payload)
+           localStorage.setItem('user', JSON.stringify(payload.user))
+           localStorage.setItem("cart", JSON.stringify(payload.user.cartitem));
         return {...state,isAuthLoading:false,isAuthError:false,isAuth:true,token:payload.token,user:payload.user}
        
     }
