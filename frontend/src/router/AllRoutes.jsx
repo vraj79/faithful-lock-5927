@@ -18,6 +18,11 @@ import Watch from "../components/Product/Watch";
 import PageNotFound from "../components/Product/404";
 import Cart from "../components/pages/Cart/Cart";
 
+import Sales from "../components/Product/Sales";
+
+import UserRequireAuth from "../hoc/UserRequireAuth";
+import SingleProduct from "../components/Product/SingleProduct";
+
 const AllRoutes = () => {
   return (
     <Routes>
@@ -32,6 +37,20 @@ const AllRoutes = () => {
       <Route path="/watch" element={<Watch/>}/>
       <Route path="/cart" element={<Cart/>}/>
       <Route path="*" element={<PageNotFound/>}/>
+      <Route
+        path="/bag"
+        element={
+          <UserRequireAuth>
+            <Bag />
+          </UserRequireAuth>
+        }
+      />
+      <Route path="/wallet" element={<Wallet />} />
+      <Route path="/desks" element={<Desk />} />
+      <Route path="/watch" element={<Watch />} />
+      <Route path="/sale" element={<Sales />} />
+      <Route path="/products/:id" element={<SingleProduct/> } />
+      <Route path="*" element={<PageNotFound />} />
       <Route
         path="/admin"
         element={

@@ -13,6 +13,9 @@
   fill: teal;
   border-color: teal;
 }
+.main{
+  margin: auto;
+}
 .main > div:first-child {
   width: 50%;
   background-color: #f7f7f7;

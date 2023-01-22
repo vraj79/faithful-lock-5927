@@ -1,7 +1,11 @@
-import { ADMIN_SHOW_PRODUCT } from "./adminShowProduct.type";
+import {
+  ADMIN_DELETE_PRODUCT,
+  ADMIN_SHOW_PRODUCT,
+} from "./adminShowProduct.type";
 
 const initialValue = {
   adminProduct: [],
+  product: 0,
 };
 
 export const adminShowProductReducer = (
@@ -13,8 +17,15 @@ export const adminShowProductReducer = (
       return {
         ...state,
         adminProduct: payload.products,
+        product: payload.totalProduct,
       };
     }
+    // case ADMIN_DELETE_PRODUCT: {
+    //   return {
+    //     ...state,
+    //     adminProduct: payload.product,
+    //   };
+    // }
     default:
       return state;
   }

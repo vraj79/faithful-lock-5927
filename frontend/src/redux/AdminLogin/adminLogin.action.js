@@ -5,6 +5,7 @@ import {
   ISLoding,
 } from "./adminLogin.type";
 import axios from "axios";
+ 
 const mainUrl = "http://localhost:8080";
 
 export const adminLogin = (cred) => async (dispatch) => {
