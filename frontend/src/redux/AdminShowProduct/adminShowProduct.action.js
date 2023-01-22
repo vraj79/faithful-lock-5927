@@ -11,19 +11,20 @@ const config = {
     admintoken: token,
   },
 };
-export const adminShowProducts = () => async (dispatch) => {
+export const adminShowProducts = (page) => async (dispatch) => {
   try {
-    let res = await axios.get(`${mainUrl}/products`);
+    let res = await axios.get(`${mainUrl}/products?page=${page}`);
     dispatch({ type: ADMIN_SHOW_PRODUCT, payload: res.data });
   } catch (error) {
     console.log(error.massage);
   }
 };
 
-export const adminDeleteProduct = (id) => async (dispatch) => {
+export const adminDeleteProduct = (id,page) => async (dispatch) => {
   try {
-    let res = await axios.delete(`${mainUrl}/delete${id}`, config);
-    dispatch({ type: ADMIN_DELETE_PRODUCT, payload: res.data });
+    await axios.delete(`${mainUrl}/products/delete/${id}`, config);
+    dispatch({ type: ADMIN_DELETE_PRODUCT });
+    dispatch(adminShowProducts(page));
   } catch (error) {
     console.log(error);
   }
