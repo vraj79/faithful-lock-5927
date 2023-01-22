@@ -17,9 +17,7 @@ import Desk from "../components/Product/Desk";
 import Watch from "../components/Product/Watch";
 import PageNotFound from "../components/Product/404";
 import Cart from "../components/pages/Cart/Cart";
-
 import Sales from "../components/Product/Sales";
-
 import UserRequireAuth from "../hoc/UserRequireAuth";
 import SingleProduct from "../components/Product/SingleProduct";
 import AdminUpdateProduct from "./AdminPage/AdminUpdateProduct";
