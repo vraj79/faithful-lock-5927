@@ -18,11 +18,13 @@ import Watch from "../components/Product/Watch";
 import PageNotFound from "../components/Product/404";
 import Cart from "../components/pages/Cart/Cart";
 import Sales from "../components/Product/Sales";
-// import UserRequireAuth from "../hoc/UserRequireAuth";
 import SingleProduct from "../components/Product/SingleProduct";
 import AdminUpdateProduct from "./AdminPage/AdminUpdateProduct";
+import LargeWithAppLinksAndSocial from "../components/pages/Footer/Footer";
 import HomeNavbar from "../components/HomeNavbar/HomeNavbar";
+// import UserRequireAuth from "../hoc/UserRequireAuth";
 import CreditCard from "../components/Card/CreditCard";
+
 const AllRoutes = () => {
   return (
     <Routes>
@@ -32,6 +34,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Homepage />
+            <LargeWithAppLinksAndSocial/>
           </>
         }
       ></Route>
