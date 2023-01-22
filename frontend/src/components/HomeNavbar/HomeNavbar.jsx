@@ -33,10 +33,7 @@ const HomeNavbar = () => {
           ):<div></div>
         }
         <div className={styles.navUser}>
-          <HiOutlineShoppingBag size={25} />
-          <Link to="/login"><ImUser size={25}/></Link>
-
-          <HiOutlineShoppingBag onClick={()=>navigate("/cart")} size={25} />
+                <HiOutlineShoppingBag onClick={()=>navigate("/cart")} size={25} />
           <ImUser size={25}/>
           <FiSearch size={25}/>
         </div>
