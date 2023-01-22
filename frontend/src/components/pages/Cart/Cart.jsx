@@ -2,6 +2,7 @@ import styles from "./cart.module.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Box, Button ,Flex} from "@chakra-ui/react";
 import { OrderSummary } from "./OrderSummary";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -28,6 +29,7 @@ const Cart = () => {
   //     "stocks": 5
   //   }
   // ];
+  const navigate=useNavigate()
 
   
   const data=JSON.parse(localStorage.getItem("cart"))||[]
@@ -39,7 +41,7 @@ const Cart = () => {
       <div className={styles.empty}>
         <p>YOUR SHOPPING CART IS EMPTY</p>
         <p>Fill it with DailyObjects</p>
-        <p><Button size='lg' colorScheme={"teal"}>Browse Products</Button></p>
+        <p><Button onClick={()=>navigate("/sale")} size='lg' colorScheme={"teal"}>Browse Products</Button></p>
       </div>
     )
   }

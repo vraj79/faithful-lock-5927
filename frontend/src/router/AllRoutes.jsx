@@ -20,13 +20,9 @@ import Cart from "../components/pages/Cart/Cart";
 import Sales from "../components/Product/Sales";
 import SingleProduct from "../components/Product/SingleProduct";
 import AdminUpdateProduct from "./AdminPage/AdminUpdateProduct";
-import HomeNavbar from "../components/HomeNavbar/HomeNavbar";
 import LargeWithAppLinksAndSocial from "../components/pages/Footer/Footer";
-
-// import UserRequireAuth from "../hoc/UserRequireAuth";
-import SingleProduct from "../components/Product/SingleProduct";
-import AdminUpdateProduct from "./AdminPage/AdminUpdateProduct";
 import HomeNavbar from "../components/HomeNavbar/HomeNavbar";
+// import UserRequireAuth from "../hoc/UserRequireAuth";
 import CreditCard from "../components/Card/CreditCard";
 
 const AllRoutes = () => {
