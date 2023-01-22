@@ -1,5 +1,6 @@
 import { Box, Container } from "@chakra-ui/react";
 import React from "react";
+import AdminDashbord from "../../components/AdminComponents/AdminDashboard/AdminDashbord";
 import Navbar from "../../components/AdminComponents/AdminNavbar/Navbar";
 
 const AdminDshboardPage = () => {
@@ -11,9 +12,9 @@ const AdminDshboardPage = () => {
           maxW={"80%"}
           margin={"auto"}
           mr={"25px"}
-          border={"1px solid red"}
+          // border={"1px solid red"}
         >
-          <h1>Dashboard</h1>
+          <AdminDashbord />
         </Container>
       </Box>
     </div>

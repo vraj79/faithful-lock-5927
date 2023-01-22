@@ -12,51 +12,34 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { BsPencilFill } from "react-icons/bs";
 import { MdAddCircleOutline, MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { adminShowProducts } from "../../../redux/AdminShowProduct/adminShowProduct.action";
+import {
+  adminDeleteProduct,
+  adminShowProducts,
+} from "../../../redux/AdminShowProduct/adminShowProduct.action";
+import Pagination from "../Pagination";
 import AdminProductShowCard from "./AdminProductShowCard";
 const AdminGetProduct = () => {
-  const { adminProduct } = useSelector((store) => store.adminShowProduct);
+  const { adminProduct, product } = useSelector(
+    (store) => store.adminShowProduct
+  );
   const dispatch = useDispatch();
-  console.log(adminProduct);
-  useEffect(() => {
-    dispatch(adminShowProducts());
-  }, []);
+  const [page, setPage] = useState(1);
+  let total = Math.ceil(product / 10);
 
+  useEffect(() => {
+    dispatch(adminShowProducts(page));
+    // dispatch(adminDeleteProduct());
+  }, [page]);
   return (
     <div>
       <Heading textAlign={"center"}>Product</Heading>
-      <Flex justifyContent={"space-between"}>
-        <Flex gap={"60px"}>
-          <Button
-            variant={"solid"}
-            bg={"green.700"}
-            color={"white"}
-            width={"7rem"}
-            _hover={{
-              bg: " #02B862",
-            }}
-            mb={"20px"}
-          >
-            Previous
-          </Button>
-          <Button
-            variant={"solid"}
-            bg={"green.700"}
-            color={"white"}
-            width={"7rem"}
-            _hover={{
-              bg: " #02B862",
-            }}
-            mb={"20px"}
-          >
-            Next
-          </Button>
-        </Flex>
+      <Flex justifyContent={"flex-end"}>
         <Button
           variant={"solid"}
           bg={"green.700"}
@@ -78,11 +61,11 @@ const AdminGetProduct = () => {
         <Table variant={"simple"}>
           <Thead bg={"cyan.300"} fontWeight={"bold"}>
             <Tr>
-              <Th>ID</Th>
               <Th>Image</Th>
               <Th>Product Name</Th>
               <Th>Product Price</Th>
               <Th>Stocks</Th>
+              <Th>Status</Th>
               <Th>Edit</Th>
               <Th>Delete</Th>
             </Tr>
@@ -96,11 +79,19 @@ const AdminGetProduct = () => {
                 title={item.title}
                 price={item.price}
                 stocks={item.stocks}
+                page={page}
               />
             ))}
           </Tbody>
         </Table>
       </TableContainer>
+      <Flex align={"center"} justifyContent={"center"} p={"25px"}>
+        <Pagination
+          totalPage={total}
+          handlePageChange={(page) => setPage(page)}
+          currentPage={page}
+        />
+      </Flex>
     </div>
   );
 };

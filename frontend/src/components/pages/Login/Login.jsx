@@ -3,7 +3,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation,useNavigate } from 'react-router-dom'
+import { Link, useLocation,useNavigate } from 'react-router-dom'
 import { Userlogin } from '../../../redux/UserLogin/userLoginaction'
  
 const Login = () => {
@@ -12,8 +12,8 @@ const Login = () => {
   const dispatch = useDispatch();
      
   const toast=useToast()
-    const {isAuth,isAuthError,isAuthLoading  } =useSelector((store)=>store.loginAuth)
-  
+    const {isAuth,isAuthError,isAuthLoading} =useSelector((store)=>store.loginAuth)
+     
     
     const {state} = useLocation();
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Login = () => {
       [name]:value
      })
   }
-console.log(state)
+// console.log(state)
   const HandleSubmit=(e)=>{
     e.preventDefault()
     dispatch(Userlogin(login));
@@ -38,12 +38,20 @@ console.log(state)
      if(isAuth){
       if (state===null) {
         // console.log(state.form);
-        navigate("/");
+        toast({
+          title: "Success",
+          description: "Welcome To The Login Dashboard",
+          status: "success",
+          duration: 2000,
+          position: "top",
+          isClosable: true,
+        });
+         navigate("/");
 
       }else if(state!==null){
         navigate(state.from, { replace: true });
 
-        toast({
+       return toast({
           title: "Success",
           description: "Welcome To The Login Dashboard",
           status: "success",
@@ -56,7 +64,7 @@ console.log(state)
      if(isAuthError){
       toast({
         title: "Something Went Wrong ",
-        description: "You Are Note Admin & Enter Right Credential",
+        description: "Enter correct Email and Password",
         status: "error",
         duration: 2000,
         position: "top",
@@ -116,7 +124,7 @@ console.log(state)
               
                 <Button
                  
-                  
+                  isLoading={isAuthLoading}
                   width={"200px"}
                   bg={"green.700"}
                   color={"white"}
@@ -130,6 +138,24 @@ console.log(state)
               
             </Stack>
           </form>
+          <Stack>
+          <Link to="/signup">
+               <Button
+                 
+                  
+                 width={"200px"}
+                 bg={"green.700"}
+                 color={"white"}
+                 _hover={{
+                   bg: "green.600",
+                 }}
+                 
+               >
+                 Click to go Register Page
+               </Button>
+               </Link>
+          </Stack>
+          
         </Stack>
       </Flex>
          

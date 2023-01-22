@@ -5,7 +5,6 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  HStack,
   Input,
   Select,
   Stack,
@@ -135,17 +134,24 @@ const AdminAddProduct = () => {
             <Box width={{ base: "100%", sm: "100%" }}>
               <FormControl isRequired>
                 <FormLabel>Sub-Category</FormLabel>
-                <Select
-                  placeholder="Select option"
-                  onChange={hanldeChange}
-                  name="maincategory"
-                  category
-                >
-                  <option value="bag">bag</option>
-                  <option value="desks">desks</option>
-                  <option value="messengerbag">messengerbag</option>
-                  <option value="wallet">wallet</option>
-                  <option value="watch">watch</option>
+                <Select onChange={hanldeChange} name="category" category>
+                  {product.maincategory === "new arrivals" && (
+                    <option value="bag">bag</option>
+                  )}
+                  {product.maincategory === "new arrivals" && (
+                    <option value="desks">desks</option>
+                  )}
+                  {product.maincategory === "sale" && (
+                    <option value="messengerbag">messengerbag</option>
+                  )}
+                  {product.maincategory === "sale" && (
+                    <option option value="wallet">
+                      wallet
+                    </option>
+                  )}
+                  {product.maincategory === "new arrivals" && (
+                    <option value="watch">watch</option>
+                  )}
                 </Select>
               </FormControl>
             </Box>

@@ -28,22 +28,17 @@ const getAllProducts = async (req, res) => {
 // url for get from search (http://localhost:8080/products?title=<product>)
 Router.route("/").get(getAllProducts);
 
-
-
 const getSingleProducts = async (req, res) => {
   const id = req.params.id;
   try {
-    const totalProduct = await Product.findById({_id:id});
-    res.status(200).send({ success: true,totalProduct });
+    const totalProduct = await Product.findById({ _id: id });
+    res.status(200).send({ success: true, totalProduct });
   } catch (error) {
     res.send({ error: error.message });
   }
 };
 //Single Products into the database at url (http://localhost:8080/products/:id)
 Router.route("/:id").get(getSingleProducts);
-
-
-
 
 // post The all Products into the database at url (http://localhost:8080/products/add)
 
@@ -66,6 +61,35 @@ Router.delete("/delete/:id", async (req, res) => {
   try {
     await Product.findByIdAndDelete({ _id: id });
     res.status(200).send({ msg: "delete product successfully" });
+  } catch (error) {
+    res.status(500).send({ msg: "Something Went Wrong!" });
+  }
+});
+
+Router.patch("/update/:id", async (req, res) => {
+  const id = req.params.id;
+  const payload = req.body;
+  try {
+    await Product.findByIdAndUpdate({ _id: id }, payload);
+    res.status(200).send({ msg: "update product successfully" });
+  } catch (error) {
+    res.status(500).send({ msg: "Something Went Wrong!" });
+  }
+});
+
+Router.get("/get/getone/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    let data = await Product.find({ _id: id });
+    res.status(200).send({ data: data });
+  } catch (error) {
+    res.status(500).send({ msg: "Something Went Wrong!" });
+  }
+});
+Router.get("/get/all", async (req, res) => {
+  try {
+    const product = await Product.find();
+    res.status(200).send({ product: product });
   } catch (error) {
     res.status(500).send({ msg: "Something Went Wrong!" });
   }

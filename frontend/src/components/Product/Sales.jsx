@@ -1,9 +1,14 @@
-import { Grid } from "@chakra-ui/react";
+import { Grid, Spinner, VStack } from "@chakra-ui/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import Items from "./Items";
 import useFetch from "./hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { handleProductdata } from "../../redux/Product/action";
 export default function Sales() {
+  const Reset = useSelector((b) => b.productReducer.Reset);
+  const dispatch = useDispatch();
+  const [count, setCount] = useState(false);
   const [query, setQuery] = useState("");
   const [sortdata, setSortdata] = useState("");
   const [page, setPage] = useState(1);
@@ -29,14 +34,19 @@ export default function Sales() {
     if (loader.current) observer.observe(loader.current);
   }, [handleObserver]);
 
-  console.log(list);
 if(query){list=list.filter((elem)=>elem.category===query)}
   if (sortdata === "LTH") {
     list = list.sort((a, b) => a.price - b.price);
   }else if (sortdata === "HTL") {
    list = list.sort((a, b) => b.price - a.price);
-  }else{ list=list}
- 
+  } else if(sortdata==="reset") {
+      list = Reset;
+    }
+ if (query === "" && !count && list.length > 0 && sortdata==="") {
+    // console.log("query is empty");
+    // console.log({"REST": Reset})
+    dispatch(handleProductdata(list));
+  }
   return (
     <>
       <Header
@@ -44,6 +54,7 @@ if(query){list=list.filter((elem)=>elem.category===query)}
         query={query}
         setQuery={setQuery}
         setSortdata={setSortdata}
+        setCount={setCount}
       />
       <Grid
         templateColumns={{
@@ -57,10 +68,18 @@ if(query){list=list.filter((elem)=>elem.category===query)}
         {list.map((elem) => {
           return <Items key={elem._id} data={elem} />;
         })}
-        {loading && <loading/>}
-        {error && <p>Error!</p>}
         <div ref={loader} />
       </Grid>
+        {loading &&  <VStack w="100%" minH="500px" alignItems="center" justifyContent="center">
+        <Spinner
+          thickness="5px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+          />
+          </VStack>}
+        {error && <p>Error!</p>}
     </>
   );
 }
