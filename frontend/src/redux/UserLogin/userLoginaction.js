@@ -8,7 +8,14 @@ const Url = "http://localhost:8080";
     dispatch({ type:USER_LOGIN_REQUEST});
       try{
           let res= await axios.post(`${Url}/user/login`,creds)
+           if(res.data.msg==="Login Done"){
             dispatch({type:USER_LOGIN_SUCCESS, payload:res.data});
+            console.log(res)
+           }
+            
+           else{
+            dispatch({type:USER_LOGIN_ERROR})
+           }
              
       }
       catch(err){
@@ -16,5 +23,10 @@ const Url = "http://localhost:8080";
       }
   };
 
-  export const userLogout = () => ({ type: LOGOUT_USER_SUCCESS });
+   
+
+
+  export const logoutUser = () => (dispatch) => {
+    dispatch({ type: LOGOUT_USER_SUCCESS });
+  };
   
