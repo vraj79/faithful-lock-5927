@@ -43,7 +43,7 @@ const AdminDashbord = () => {
   let subContectNum = ContectData(subCategory);
   let stokesNum = ContectData(stokes);
 
-  console.log(ContectNum);
+  // console.log(ContectNum);
   return (
     <div>
       <Heading textAlign={"center"} pt={"20px"}>

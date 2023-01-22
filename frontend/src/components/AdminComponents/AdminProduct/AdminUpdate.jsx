@@ -57,7 +57,7 @@ const AdminUpdate = () => {
   return (
     <div>
       <Heading textAlign={"center"} pt={"20px"}>
-        Add Product
+        Update Product
       </Heading>
       <Flex justify={"center"} width={"100%"} bg={"whiteAlpha.800"} mt={"15"}>
         <form

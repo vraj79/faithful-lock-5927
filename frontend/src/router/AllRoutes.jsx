@@ -23,35 +23,111 @@ import Sales from "../components/Product/Sales";
 import UserRequireAuth from "../hoc/UserRequireAuth";
 import SingleProduct from "../components/Product/SingleProduct";
 import AdminUpdateProduct from "./AdminPage/AdminUpdateProduct";
-
+import HomeNavbar from "../components/HomeNavbar/HomeNavbar";
 const AllRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Homepage />}></Route>
-      <Route path="/login" element={<Login />}></Route>
-      <Route path="/signup" element={<Signup />}></Route>
-      <Route path="/admin-login" element={<AdminLogin />}></Route>
-      <Route path="/newarrival" element={<NewProduct />} />
-      <Route path="/bag" element={<Bag/>}/>
-      <Route path="/wallet" element={<Wallet/>}/>
-      <Route path="/desks" element={<Desk/>}/>
-      <Route path="/watch" element={<Watch/>}/>
-      <Route path="/cart" element={<Cart/>}/>
-      <Route path="*" element={<PageNotFound/>}/>
+      <Route
+        path="/"
+        element={
+          <>
+            <HomeNavbar />
+            <Homepage />
+          </>
+        }
+      ></Route>
+      <Route
+        path="/login"
+        element={
+          <>
+            <HomeNavbar />
+            <Login />
+          </>
+        }
+      ></Route>
+      <Route
+        path="/signup"
+        element={
+          <>
+            <HomeNavbar />
+            <Signup />
+          </>
+        }
+      ></Route>
+      <Route
+        path="/admin-login"
+        element={
+          <>
+            <HomeNavbar />
+            <AdminLogin />
+          </>
+        }
+      ></Route>
+      <Route
+        path="/newarrival"
+        element={
+          <>
+            <HomeNavbar />
+            <NewProduct />
+          </>
+        }
+      />
       <Route
         path="/bag"
         element={
-          <UserRequireAuth>
+          <>
+            <HomeNavbar />
             <Bag />
-          </UserRequireAuth>
+          </>
         }
       />
-      <Route path="/wallet" element={<Wallet />} />
-      <Route path="/desks" element={<Desk />} />
-      <Route path="/watch" element={<Watch />} />
-      <Route path="/sale" element={<Sales />} />
-      <Route path="/products/:id" element={<SingleProduct />} />
+      <Route
+        path="/wallet"
+        element={
+          <>
+            <HomeNavbar />
+            <Wallet />
+          </>
+        }
+      />
+      <Route
+        path="/desks"
+        element={
+          <>
+            <HomeNavbar />
+            <Desk />
+          </>
+        }
+      />
+      <Route
+        path="/watch"
+        element={
+          <>
+            <HomeNavbar />
+            <Watch />
+          </>
+        }
+      />
+      <Route
+        path="/cart"
+        element={
+          <>
+            <HomeNavbar />
+            <Cart />
+          </>
+        }
+      />
+      <Route
+        path="/sale"
+        element={
+          <>
+            <HomeNavbar />
+            <Sales />
+          </>
+        }
+      />
       <Route path="*" element={<PageNotFound />} />
+
       <Route
         path="/admin"
         element={
