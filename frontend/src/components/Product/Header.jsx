@@ -13,7 +13,7 @@ import Styles from "./Header.module.css";
 export default function Header({ title, setQuery, setSortdata ,query}) {
   return (
     <VStack w={"100%"} justifyContent="center" spacing={7} className={Styles.main}>
-      <Heading as="h1" size="2xl" noOfLines={1}>
+      <Heading as="h1" size="xl" noOfLines={1}>
         {title}
       </Heading>
       {title === "New Arrivals"&&

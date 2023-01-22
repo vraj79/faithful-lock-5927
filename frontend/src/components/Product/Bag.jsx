@@ -1,4 +1,4 @@
-import { Grid } from "@chakra-ui/react";
+import { Grid, Spinner, VStack } from "@chakra-ui/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import useFetch from "./hooks";
@@ -53,10 +53,25 @@ export default function Bag() {
         {list.map((elem) => {
           return <Items key={elem._id} data={elem} />;
         })}
-        {loading && <p>Loading...</p>}
-        {error && <p>Error!</p>}
         <div ref={loader} />
       </Grid>
+      {loading && (
+        <VStack
+          w="100%"
+          minH="500px"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Spinner
+            thickness="5px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        </VStack>
+      )}
+      {error && <p>Error!</p>}
     </>
   );
 }
