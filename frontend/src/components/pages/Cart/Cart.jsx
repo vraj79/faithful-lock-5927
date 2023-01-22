@@ -2,32 +2,13 @@ import styles from "./cart.module.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Box, Button ,Flex} from "@chakra-ui/react";
 import { OrderSummary } from "./OrderSummary";
+import { useNavigate } from "react-router-dom";
 
 
 
 const Cart = () => {
-  const data = [
-    {
-      img1:
-        "https://images.dailyobjects.com/marche/product-images/1201/all-beige-pedal-daypack-images/All-Beige-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-393,h-485,dpr-1",
-      title: "All Beige Pedal Daypack",
-      img2:
-        "https://images.dailyobjects.com/marche/product-images/1201/all-beige-pedal-daypack-images/All-Beige-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-392,h-483,dpr-1",
-      price: 1699,
-      strike: 2999,
-      category: "bag",
-      stocks: 2
-    },
-    {
-      "img1": "https://images.dailyobjects.com/marche/product-images/1201/all-blue-pedal-daypack-images/All-Blue-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-393,h-485,dpr-1",
-      "title": "All Blue Pedal Daypack",
-      "img2": "https://images.dailyobjects.com/marche/product-images/1201/all-blue-pedal-daypack-images/All-Blue-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-392,h-483,dpr-1",
-      "price": 1299,
-      "strike": 2599,
-      "category": "bag",
-      "stocks": 5
-    }
-  ];
+ 
+  const navigate=useNavigate()
 
   
   // const data=[]
@@ -39,7 +20,7 @@ const Cart = () => {
       <div className={styles.empty}>
         <p>YOUR SHOPPING CART IS EMPTY</p>
         <p>Fill it with DailyObjects</p>
-        <p><Button size='lg' colorScheme={"teal"}>Browse Products</Button></p>
+        <p><Button onClick={()=>navigate("/sale")} size='lg' colorScheme={"teal"}>Browse Products</Button></p>
       </div>
     )
   }
