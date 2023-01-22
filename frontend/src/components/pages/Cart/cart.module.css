@@ -14,14 +14,12 @@
     margin: auto;
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    /* align-items: center; */
     gap: 2.5rem;
 }
 
 .cartItemData{
     display: flex;
     margin: 2rem 0;
-    /* border: 1px solid red; */
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
 }
@@ -46,12 +44,8 @@
     width: 25%;
 }
 .summary{
-    display: grid;
-    /* justify-content: center;
-    align-items: center; */
-    /* border: 1px solid red; */
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border-radius: 10px;
+    display: grid;
     padding: 1rem;
     margin-top: 4vh;
 }

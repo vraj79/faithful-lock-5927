@@ -18,11 +18,13 @@ import Watch from "../components/Product/Watch";
 import PageNotFound from "../components/Product/404";
 import Cart from "../components/pages/Cart/Cart";
 import Sales from "../components/Product/Sales";
-// import UserRequireAuth from "../hoc/UserRequireAuth";
 import SingleProduct from "../components/Product/SingleProduct";
 import AdminUpdateProduct from "./AdminPage/AdminUpdateProduct";
+import LargeWithAppLinksAndSocial from "../components/pages/Footer/Footer";
 import HomeNavbar from "../components/HomeNavbar/HomeNavbar";
+// import UserRequireAuth from "../hoc/UserRequireAuth";
 import CreditCard from "../components/Card/CreditCard";
+
 const AllRoutes = () => {
   return (
     <Routes>
@@ -32,6 +34,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Homepage />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       ></Route>
@@ -41,6 +44,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Login />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       ></Route>
@@ -50,6 +54,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Signup />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       ></Route>
@@ -59,6 +64,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <AdminLogin />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       ></Route>
@@ -68,6 +74,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <NewProduct />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -77,6 +84,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Bag />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -86,6 +94,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <CreditCard />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -96,6 +105,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Wallet />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -105,6 +115,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Desk />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -114,6 +125,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Watch />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -123,6 +135,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Cart />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -132,6 +145,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Sales />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -141,6 +155,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <SingleProduct />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
