@@ -21,23 +21,18 @@ const HomeNavbar = () => {
         {
           isDesktop?(
             <div className={styles.navItems}>
-
-          <Link to="/newarrival"><span>NEW ARRIVALS</span></Link>
-          <Link to="wallet"><span>WALLETS</span></Link>
-          <Link to="desks"><span>DESKS</span></Link>
-          <Link to="sale"><span className={styles.navItemsSale}>SALE</span></Link>
-          <Link to="bag"><span>BAGS</span></Link>
-          <Link to="watch"><span>WATCH</span></Link>
-
+          <span onClick={()=>navigate('/newarrival')}>NEW ARRIVALS</span>
+          <span onClick={()=>navigate('/wallet')}>WALLETS</span>
+          <span onClick={()=>navigate('/desks')}>DESKS</span>
+          <span className={styles.navItemsSale} onClick={()=>navigate("/sale")}>SALE</span>
+          <span onClick={()=>navigate('/bag')}>BAGS</span>
+          <span onClick={()=>navigate('/watch')}>WATCHS</span>
         </div>
           ):<div></div>
         }
         <div className={styles.navUser}>
-          <HiOutlineShoppingBag size={25} />
-          <Link to="login"><ImUser size={25}/></Link>
-
           <HiOutlineShoppingBag onClick={()=>navigate("/cart")} size={25} />
-          <ImUser size={25}/>
+          <ImUser size={25} onClick={()=>navigate("/login")}/>
           <FiSearch size={25}/>
         </div>
       </div>
