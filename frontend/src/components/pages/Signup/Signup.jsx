@@ -3,7 +3,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import "./signup.css"
 const Signup = () => {
   const [signup,SetSignup]=useState({})
@@ -30,16 +30,16 @@ const Signup = () => {
     }
     }).then(res=>res.json())
     .then(res=>{
-    
+       console.log(res)
       if(res.msg==="User Register Successfully"){
-        return toast({
+         toast({
           title: "Registration Successful",
         status: "success",
         duration: 2000,
         position: "top",
         isClosable: true,
         })
-        
+        navigate("/login")
       }
 
        else{
@@ -50,7 +50,7 @@ const Signup = () => {
           position: "top",
           isClosable: true,
         });
-        return navigate("/login");
+        navigate("/login")
        }
 
       
@@ -108,7 +108,7 @@ const Signup = () => {
             </FormControl>
 
              {/* Last Name */}
-             <FormControl id="email" isRequired pb={"20px"}>
+             <FormControl   isRequired pb={"20px"}>
               <FormLabel fontSize={"18px"}>Last Name</FormLabel>
               <Input
                 placeholder="Last_Name"
@@ -120,7 +120,7 @@ const Signup = () => {
             </FormControl>
 
             {/* //Email */}
-            <FormControl id="email" isRequired pb={"20px"}>
+            <FormControl   isRequired pb={"20px"}>
               <FormLabel fontSize={"18px"}>Email address</FormLabel>
               <Input
                 placeholder="your-email@dailysope.com"
@@ -132,7 +132,7 @@ const Signup = () => {
             </FormControl>
 
             {/* password */}
-            <FormControl id="password" isRequired pb={"20px"}>
+            <FormControl  isRequired pb={"20px"}>
               <FormLabel fontSize={"18px"}>Password</FormLabel>
               <Input type="password" name="password"  onChange={handlechange}  />
             </FormControl>
@@ -140,7 +140,7 @@ const Signup = () => {
             {/* //Mobile Number */}
 
              {/* first Name */}
-             <FormControl id="email" isRequired pb={"20px"}>
+             <FormControl   isRequired pb={"20px"}>
               <FormLabel fontSize={"18px"}>Mobile Number</FormLabel>
               <Input
                 placeholder="123456789"
@@ -165,12 +165,32 @@ const Signup = () => {
                   }}
                   type="submit"
                 >
-                  Login
+                  Register
                 </Button>
               
             </Stack>
           </form>
+          <Stack spacing={6} alignItems={"flex-end"}>
+              
+               <Link to="/login">
+               <Button
+                 
+                  
+                 width={"200px"}
+                 bg={"green.700"}
+                 color={"white"}
+                 _hover={{
+                   bg: "green.600",
+                 }}
+                 
+               >
+                 Click to go Login Page
+               </Button>
+               </Link>
+              
+            </Stack>
         </Stack>
+
       </Flex>
 
 

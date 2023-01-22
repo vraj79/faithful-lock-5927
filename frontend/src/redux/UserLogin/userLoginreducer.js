@@ -1,12 +1,13 @@
 import { LOGOUT_USER_SUCCESS, USER_LOGIN_ERROR, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS } from "./userLogin.type";
 
 const token = localStorage.getItem("usertoken");
+
 const initialstate={
-    token: token,
+    token: "",
     isAuth: false,
     isAuthLoading:false,
     isAuthError:false,
-    user:[]
+    user:{}
 }
 
 const LoginReducer=(state=initialstate,action)=>{
@@ -22,7 +23,7 @@ const LoginReducer=(state=initialstate,action)=>{
          
         localStorage.setItem('usertoken',payload.token)
         console.log(payload)
-        return {...state,isAuthLoading:false,isAuthError:false,isAuth:true,token:payload}
+        return {...state,isAuthLoading:false,isAuthError:false,isAuth:true,token:payload.token,user:payload.user}
        
     }
     
@@ -31,14 +32,14 @@ const LoginReducer=(state=initialstate,action)=>{
     }
 
     case LOGOUT_USER_SUCCESS: {
-        localStorage.removeItem("usertoken");
-        
+        localStorage.clear();
         return {
           ...state,
           isAuth: false,
           token: "",
           isAuthLoading: false,
-          isAuthError:false
+          isAuthError:false,
+          user:{}
         }
     }
     default:{
