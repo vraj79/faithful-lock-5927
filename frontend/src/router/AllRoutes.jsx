@@ -16,6 +16,7 @@ import Wallet from "../components/Product/Wallet";
 import Desk from "../components/Product/Desk";
 import Watch from "../components/Product/Watch";
 import PageNotFound from "../components/Product/404";
+import Cart from "../components/pages/Cart/Cart";
 
 import Sales from "../components/Product/Sales";
 
@@ -31,6 +32,12 @@ const AllRoutes = () => {
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/admin-login" element={<AdminLogin />}></Route>
       <Route path="/newarrival" element={<NewProduct />} />
+      <Route path="/bag" element={<Bag/>}/>
+      <Route path="/wallet" element={<Wallet/>}/>
+      <Route path="/desks" element={<Desk/>}/>
+      <Route path="/watch" element={<Watch/>}/>
+      <Route path="/cart" element={<Cart/>}/>
+      <Route path="*" element={<PageNotFound/>}/>
       <Route
         path="/bag"
         element={
