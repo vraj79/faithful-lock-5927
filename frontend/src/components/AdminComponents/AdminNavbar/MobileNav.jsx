@@ -22,7 +22,7 @@ const MobileNav = ({ onOpen }) => {
   const { isAuth, data } = useSelector((store) => store.adminAuth);
   // const { admin } = data;
   const admin = JSON.parse(localStorage.getItem("AdminData")) || {};
-  console.log(data);
+  // console.log(data);
   const dispatch = useDispatch();
   const handleLoginClick = () => {
     if (isAuth) {

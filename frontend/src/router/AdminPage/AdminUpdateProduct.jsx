@@ -1,9 +1,9 @@
 import { Box, Container } from "@chakra-ui/react";
 import React from "react";
-import AdminDashbord from "../../components/AdminComponents/AdminDashboard/AdminDashbord";
 import Navbar from "../../components/AdminComponents/AdminNavbar/Navbar";
+import AdminUpdate from "../../components/AdminComponents/AdminProduct/AdminUpdate";
 
-const AdminDshboardPage = () => {
+const AdminUpdateProduct = () => {
   return (
     <div>
       <Navbar />
@@ -14,11 +14,11 @@ const AdminDshboardPage = () => {
           mr={"25px"}
           // border={"1px solid red"}
         >
-          <AdminDashbord />
+          <AdminUpdate />
         </Container>
       </Box>
     </div>
   );
 };
 
-export default AdminDshboardPage;
+export default AdminUpdateProduct;
