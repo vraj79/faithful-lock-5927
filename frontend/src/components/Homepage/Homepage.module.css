@@ -76,9 +76,6 @@ img{
     margin-top: 1.5rem;
     margin-bottom: 2.5rem;
 }
-.shopCollections img{
-    width: 100%;
-}
 .shopCollectionsItems p{
     margin-top: 2.5px;
 }
@@ -119,4 +116,48 @@ img{
 .official p{
     padding-top: 2.5rem;
     margin-bottom: 2.5rem;
+}
+
+.input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin: 2rem auto;
+}
+
+.input input{
+    padding: 0.7rem;
+    width: 100%;
+    border-top: none;
+    padding: 1em 0.5em;
+}
+
+.input button{
+    background-color: #bfbfbf;
+    border: none;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    padding: 1.5em 1em;
+    font-size: 0.8em;
+}
+
+.fhm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2.5rem 0;
+    gap: 1.5rem;
+}
+
+.fhmItem{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.fhmItem img{
+    width: 25%;
 }
