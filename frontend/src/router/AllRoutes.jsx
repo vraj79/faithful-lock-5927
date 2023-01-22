@@ -21,6 +21,7 @@ import Sales from "../components/Product/Sales";
 
 import UserRequireAuth from "../hoc/UserRequireAuth";
 import SingleProduct from "../components/Product/SingleProduct";
+import AdminUpdateProduct from "./AdminPage/AdminUpdateProduct";
 
 const AllRoutes = () => {
   return (
@@ -42,7 +43,7 @@ const AllRoutes = () => {
       <Route path="/desks" element={<Desk />} />
       <Route path="/watch" element={<Watch />} />
       <Route path="/sale" element={<Sales />} />
-      <Route path="/products/:id" element={<SingleProduct/> } />
+      <Route path="/products/:id" element={<SingleProduct />} />
       <Route path="*" element={<PageNotFound />} />
       <Route
         path="/admin"
@@ -81,6 +82,14 @@ const AllRoutes = () => {
         element={
           <AdminRequireAuth>
             <AdminAddPoductPage />
+          </AdminRequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/admin/update/:id"
+        element={
+          <AdminRequireAuth>
+            <AdminUpdateProduct />
           </AdminRequireAuth>
         }
       ></Route>

@@ -10,21 +10,36 @@ import {
   Stack,
   useToast,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import axios from "axios";
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../../redux/AdminAddProduct/adminaddProduct.action";
-
-const AdminAddProduct = () => {
-  const [product, setProduct] = useState({});
-  const { productData, msg } = useSelector((store) => store.adminAddProduct);
-  console.log(msg);
-  const dispatch = useDispatch();
+import { useParams } from "react-router-dom";
+import { adminUpdateData } from "../../../redux/AdminShowProduct/adminShowProduct.action";
+const AdminUpdate = () => {
+  const { updatemsg } = useSelector((store) => store.adminShowProduct);
   const toast = useToast();
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+  const getdata = async (id) => {
+    try {
+      const res = await axios(`http://localhost:8080/products/${id}`);
+      setProduct(res.data.totalProduct);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getdata(id);
+  }, [id]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addProduct(product));
+    dispatch(adminUpdateData(id, product));
     toast({
-      title: msg,
+      title: updatemsg,
       status: "success",
       duration: 9000,
       isClosable: true,
@@ -39,7 +54,6 @@ const AdminAddProduct = () => {
       [name]: value,
     });
   };
-  console.log(productData);
   return (
     <div>
       <Heading textAlign={"center"} pt={"20px"}>
@@ -63,22 +77,24 @@ const AdminAddProduct = () => {
             width={{ base: "100%", sm: "100%" }}
           >
             <Box width={{ base: "100%", sm: "100%" }}>
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel>Product Title</FormLabel>
                 <Input
                   type="text"
                   name="title"
+                  value={product.title}
                   onChange={hanldeChange}
                   placeholder={"Title"}
                 />
               </FormControl>
             </Box>
             <Box width={{ base: "100%", sm: "100%" }}>
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel>Product Price</FormLabel>
                 <Input
                   type="text"
                   name="price"
+                  value={product.price}
                   onChange={hanldeChange}
                   placeholder={"Product Price"}
                 />
@@ -91,22 +107,24 @@ const AdminAddProduct = () => {
             width={{ base: "100%", sm: "100%" }}
           >
             <Box width={{ base: "100%", sm: "100%" }}>
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel>First Image</FormLabel>
                 <Input
                   type="text"
                   name="img1"
+                  value={product.img1}
                   onChange={hanldeChange}
                   placeholder={"Image URL"}
                 />
               </FormControl>
             </Box>
             <Box width={{ base: "100%", sm: "100%" }}>
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel>Second Image</FormLabel>
                 <Input
                   type="text"
                   name="img2"
+                  value={product.img2}
                   onChange={hanldeChange}
                   placeholder={"Image URL"}
                 />
@@ -119,12 +137,13 @@ const AdminAddProduct = () => {
             direction={{ base: "column", sm: "row" }}
           >
             <Box width={{ base: "100%", sm: "100%" }}>
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel>Main-Category</FormLabel>
                 <Select
                   placeholder="Select option"
                   onChange={hanldeChange}
                   name="maincategory"
+                  value={product.maincategory}
                 >
                   <option value="new arrivals">new arrivals</option>
                   <option value="sale">sale</option>
@@ -132,9 +151,13 @@ const AdminAddProduct = () => {
               </FormControl>
             </Box>
             <Box width={{ base: "100%", sm: "100%" }}>
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel>Sub-Category</FormLabel>
-                <Select onChange={hanldeChange} name="category" category>
+                <Select
+                  onChange={hanldeChange}
+                  name="category"
+                  value={product.category}
+                >
                   {product.maincategory === "new arrivals" && (
                     <option value="bag">bag</option>
                   )}
@@ -162,22 +185,24 @@ const AdminAddProduct = () => {
             direction={{ base: "column", sm: "row" }}
           >
             <Box width={{ base: "100%", sm: "100%" }}>
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel>Price Strike</FormLabel>
                 <Input
                   type="text"
                   name="strike"
+                  value={product.strike}
                   onChange={hanldeChange}
                   placeholder={"Discount "}
                 />
               </FormControl>
             </Box>
             <Box width={{ base: "100%", sm: "100%" }}>
-              <FormControl isRequired>
+              <FormControl>
                 <FormLabel>Add Stocks</FormLabel>
                 <Input
                   type="text"
                   name="stocks"
+                  value={product.stocks}
                   onChange={hanldeChange}
                   placeholder={"Stocks"}
                 />
@@ -210,4 +235,4 @@ const AdminAddProduct = () => {
   );
 };
 
-export default AdminAddProduct;
+export default AdminUpdate;
