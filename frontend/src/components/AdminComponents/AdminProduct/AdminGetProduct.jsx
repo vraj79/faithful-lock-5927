@@ -36,7 +36,6 @@ const AdminGetProduct = () => {
     dispatch(adminShowProducts(page));
     // dispatch(adminDeleteProduct());
   }, [page]);
-
   return (
     <div>
       <Heading textAlign={"center"}>Product</Heading>

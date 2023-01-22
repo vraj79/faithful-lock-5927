@@ -1,14 +1,14 @@
-import { Flex, Image, Td, Text, Tr } from "@chakra-ui/react";
+import { Flex, Image, Td, Text, Tr, useToast } from "@chakra-ui/react";
 import React from "react";
 import { BsThreeDotsVertical, BsPencilFill } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { adminDeleteProduct } from "../../../redux/AdminShowProduct/adminShowProduct.action";
 
 const AdminProductShowCard = ({ id, img, title, price, stocks, page }) => {
-  const { adminProduct, product } = useSelector(
-    (store) => store.adminShowProduct
-  );
+  const { deletemsg } = useSelector((store) => store.adminShowProduct);
+  const toast = useToast();
   const dispatch = useDispatch();
   return (
     <Tr
@@ -49,11 +49,24 @@ const AdminProductShowCard = ({ id, img, title, price, stocks, page }) => {
           </Flex>
         </Td>
       )}
-      <Td>{<BsPencilFill />}</Td>
+      <Td>
+        <Link to={`/admin/update/${id}`}>{<BsPencilFill />}</Link>
+      </Td>
       <Td
         color={"red"}
         cursor={"pointer"}
-        onClick={() => dispatch(adminDeleteProduct(id, page), console.log(id))}
+        onClick={() =>
+          dispatch(
+            adminDeleteProduct(id, page),
+            toast({
+              title: deletemsg,
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+              position: "top",
+            })
+          )
+        }
       >
         {<MdDelete />}
       </Td>

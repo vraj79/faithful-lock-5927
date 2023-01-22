@@ -8,37 +8,44 @@ import { Link, useNavigate } from "react-router-dom";
 
 const HomeNavbar = () => {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   return (
     <div>
       <div className={styles.navbar}>
-        <div onClick={()=>navigate('/')} className="navIcon">
+        <div onClick={() => navigate("/")} className="navIcon">
           <img
             src="https://images.dailyobjects.com/marche/icons/logo_named.png?tr=cm-pad_resize,v-2,w-135,h-27,dpr-1"
             alt=""
           />
         </div>
-        {
-          isDesktop?(
-            <div className={styles.navItems}>
-
-          <Link to="/newarrival"><span>NEW ARRIVALS</span></Link>
-          <Link to="wallet"><span>WALLETS</span></Link>
-          <Link to="desks"><span>DESKS</span></Link>
-          <Link to="sale"><span className={styles.navItemsSale}>SALE</span></Link>
-          <Link to="bag"><span>BAGS</span></Link>
-          <Link to="watch"><span>WATCH</span></Link>
-
-        </div>
-          ):<div></div>
-        }
+        {isDesktop ? (
+          <div className={styles.navItems}>
+            <Link to="/newarrival">
+              <span>NEW ARRIVALS</span>
+            </Link>
+            <Link to="/wallet">
+              <span>WALLETS</span>
+            </Link>
+            <Link to="/desks">
+              <span>DESKS</span>
+            </Link>
+            <Link to="/sale">
+              <span className={styles.navItemsSale}>SALE</span>
+            </Link>
+            <Link to="/bag">
+              <span>BAGS</span>
+            </Link>
+            <Link to="/watch">
+              <span>WATCH</span>
+            </Link>
+          </div>
+        ) : (
+          <div></div>
+        )}
         <div className={styles.navUser}>
-          <HiOutlineShoppingBag size={25} />
-          <Link to="login"><ImUser size={25}/></Link>
-
-          <HiOutlineShoppingBag onClick={()=>navigate("/cart")} size={25} />
-          <ImUser size={25}/>
-          <FiSearch size={25}/>
+          <HiOutlineShoppingBag onClick={() => navigate("/cart")} size={25} />
+          <ImUser size={25} />
+          <FiSearch size={25} />
         </div>
       </div>
       <img
