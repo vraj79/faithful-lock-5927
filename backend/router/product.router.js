@@ -28,6 +28,23 @@ const getAllProducts = async (req, res) => {
 // url for get from search (http://localhost:8080/products?title=<product>)
 Router.route("/").get(getAllProducts);
 
+
+
+const getSingleProducts = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const totalProduct = await Product.findById({_id:id});
+    res.status(200).send({ success: true,totalProduct });
+  } catch (error) {
+    res.send({ error: error.message });
+  }
+};
+//Single Products into the database at url (http://localhost:8080/products/:id)
+Router.route("/:id").get(getSingleProducts);
+
+
+
+
 // post The all Products into the database at url (http://localhost:8080/products/add)
 
 Router.use(adminAuth);
