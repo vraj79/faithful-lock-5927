@@ -7,7 +7,7 @@ const productSchema = mongoose.Schema({
   strike: String,
   category: String,
   maincategory: String,
-  stock: Number,
+  stocks: Number,
   img2: String,
 });
 const Product = mongoose.model("product", productSchema);
