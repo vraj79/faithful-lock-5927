@@ -28,9 +28,12 @@ const Cart = () => {
   //     "stocks": 5
   //   }
   // ];
+ 
+ 
+ 
 
 
-const navigate=useNavigate()
+    const navigate=useNavigate()
 
    const data=JSON.parse(localStorage.getItem("cart"))||[]
 
