@@ -20,6 +20,7 @@ import PageNotFound from "../components/Product/404";
 import Sales from "../components/Product/Sales";
 
 import UserRequireAuth from "../hoc/UserRequireAuth";
+import SingleProduct from "../components/Product/SingleProduct";
 
 const AllRoutes = () => {
   return (
@@ -41,6 +42,7 @@ const AllRoutes = () => {
       <Route path="/desks" element={<Desk />} />
       <Route path="/watch" element={<Watch />} />
       <Route path="/sale" element={<Sales />} />
+      <Route path="/products/:id" element={<SingleProduct/> } />
       <Route path="*" element={<PageNotFound />} />
       <Route
         path="/admin"

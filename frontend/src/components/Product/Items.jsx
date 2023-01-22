@@ -3,6 +3,7 @@ import Styles from "./Items.module.css";
 import React, { useRef, useState } from "react";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
+import { useNavigate, useParams } from "react-router-dom";
 
 // let data = {
 //   img1: "https://images.dailyobjects.com/marche/product-images/1201/all-beige-pedal-daypack-images/All-Beige-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-393,h-485,dpr-1",
@@ -16,6 +17,8 @@ import { BsHeartFill } from "react-icons/bs";
 // };
 export default function Items({ data }) {
   // console.log(data.category=="bag");
+  const navigate = useNavigate();
+  // const id=useParams()
   const [whit, setWhit] = useState(true);
   const ref = useRef(null);
   const ChangeImage1 = () => {
@@ -37,6 +40,7 @@ export default function Items({ data }) {
         w="100%"
         borderTopLeftRadius={20}
         borderTopRightRadius={20}
+        onClick={()=>navigate(`/products/${data._id}`)}
       >
         <Image
           src={data.img1}
