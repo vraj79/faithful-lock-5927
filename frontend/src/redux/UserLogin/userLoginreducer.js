@@ -24,6 +24,8 @@ const LoginReducer=(state=initialstate,action)=>{
         localStorage.setItem('usertoken',payload.token)
            localStorage.setItem('user', JSON.stringify(payload.user))
            localStorage.setItem("cart", JSON.stringify(payload.user.cartitem));
+           localStorage.setItem("wishlist", JSON.stringify(payload.user.wishlist));
+           console.log(payload.user.wishlist)
         return {...state,isAuthLoading:false,isAuthError:false,isAuth:true,token:payload.token,user:payload.user}
        
     }

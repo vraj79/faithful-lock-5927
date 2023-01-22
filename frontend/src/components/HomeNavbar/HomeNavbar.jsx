@@ -34,7 +34,7 @@ const HomeNavbar = () => {
         }
         <div className={styles.navUser}>
                 <HiOutlineShoppingBag onClick={()=>navigate("/cart")} size={25} />
-          <ImUser size={25}/>
+          <ImUser size={25} onClick={() =>navigate("/login")} />
           <FiSearch size={25}/>
         </div>
       </div>
