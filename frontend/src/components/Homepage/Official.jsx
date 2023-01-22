@@ -53,7 +53,30 @@ const Official = () => {
         <hr />
         {/* Featured In */}
         <div>
-            
+          <p style={{margin:"2.5rem 0rem",textAlign:"center"}} className={styles.h2}>FEATURED IN</p>
+            <img style={{margin:"2.5rem 0rem"}} src="https://images.dailyobjects.com/marche/icons/press-desktop.png?tr=cm-pad_resize,v-2,w-1349,h-200,dpr-1" alt="" />
+        </div>
+        <br />
+        <hr />
+        {/* some more */}
+          <p style={{margin:"2.5rem 0rem",textAlign:"center"}} className={styles.h2}>GET EXCLUSIVE ACCESS TO NEW PRODUCTS, DEALS & SURPRISE TREATS</p>
+        <div className={styles.input}>
+          <input  type="text" placeholder='Enter Your Email' />
+          <p><button>SUBSCRIBE</button></p>
+        </div>
+        <div className={styles.fhm}>
+          <div className={styles.fhmItem}>
+            <img src="https://images.dailyobjects.com/marche/icons/social/quick-delivery.svg?tr=cm-pad_resize,v-2,w-40,h-40,dpr-1" alt="" />
+            <p>Quick Delivery</p>
+          </div>
+          <div className={styles.fhmItem}>
+            <img src="https://images.dailyobjects.com/marche/icons/social/easy-returns.svg?tr=cm-pad_resize,v-2,w-40,h-40,dpr-1" alt="" />
+            <p>Easy Returns</p>
+          </div>
+          <div className={styles.fhmItem}>
+            <img src="https://images.dailyobjects.com/marche/icons/social/quality-assured.svg?tr=cm-pad_resize,v-2,w-40,h-40,dpr-1" alt="" />
+            <p>Quality Assured</p>
+          </div>
         </div>
     </div>
   )
