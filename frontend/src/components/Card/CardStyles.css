@@ -12,7 +12,10 @@ body {
   width: 60%;
   display: flex;
   justify-content: space-around;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+  margin-top: 4vh;
   box-sizing: border-box;
 }
 .card-form__inner {

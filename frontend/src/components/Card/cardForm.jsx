@@ -1,4 +1,6 @@
+import { Button } from '@chakra-ui/react';
 import React, {useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const currentYear = new Date().getFullYear();
 const monthsArr = Array.from({ length: 12 }, (x, i) => {
@@ -20,6 +22,7 @@ export default function CForm({
     children
 }) {
     const [cardNumber, setCardNumber] = useState('');
+    const navigate = useNavigate();
 
     const handleFormChange = (event) => {
         const { name, value } = event.target;
@@ -169,6 +172,9 @@ export default function CForm({
                         </div>
                     </div>
                 </div>
+                {/* <Button bg="rgb(0,181,181)" color="white" w="100%" colorScheme=>Submit</Button> */}
+                <Button width={"100%"} style={{ margin: "1rem 0" }} size='lg' colorScheme={"whatsapp"} onClick={() => { navigate("/"); alert("Order Confirmed")}}>Payment</Button>
+                
             </div>
         </div>
     );

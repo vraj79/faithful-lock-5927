@@ -7,18 +7,18 @@ Router.use(express.json());
 const key = process.env.KEY;
 const adminAuth = require("../middleware/adminAuth.middleware");
 const {userModel}=require("../model/user.model")
-Router.use(adminAuth);
 
- Router.get("/add",async(req,res)=>{
-  
-     try{
-          const user=await userModel.find()
-           res.send({user:user})
-     }
-     catch(err){
+Router.get("/add",async(req,res)=>{
+    
+    try{
+        const user=await userModel.find()
+        res.send({user:user})
+    }
+    catch(err){
         res.send("Error")
-     }
- })
+    }
+})
+Router.use(adminAuth);
  Router.delete("/delete/:id",async(req,res)=>{
     const id=req.params.id
     try{

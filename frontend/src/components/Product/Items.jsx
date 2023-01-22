@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 // let data = {
 //   img1: "https://images.dailyobjects.com/marche/product-images/1201/all-beige-pedal-daypack-images/All-Beige-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-393,h-485,dpr-1",
@@ -17,9 +19,12 @@ import { useNavigate, useParams } from "react-router-dom";
 // };
 export default function Items({ data }) {
   // console.log(data.category=="bag");
+  const user = useSelector((user) => user.loginAuth.user);
+  const [wishlist, setwishlist] = useState(JSON.parse(localStorage.getItem("wishlist")) || user.wishlist);
+
   const navigate = useNavigate();
   // const id=useParams()
-  const [whit, setWhit] = useState(true);
+  const [whit, setWhit] = useState(false);
   const ref = useRef(null);
   const ChangeImage1 = () => {
     ref.current.src = data.img1;
@@ -27,9 +32,26 @@ export default function Items({ data }) {
   const ChangeImage = () => {
     ref.current.src = data.img2;
   };
-  const Setwhitlist = () => {
-    setWhit(!whit);
+  const addtowislist = async () => {
+    const cartlist = wishlist.filter((elem) => elem._id === data._id);
+    try {
+      if (cartlist.length > 0) {
+        alert("Already Add in wishlist");
+        setWhit(true);
+      } else {
+        const res = await axios.post(
+          `http://localhost:8080/cart/wishlist/${user._id}`,
+          data
+        );
+        const newdata=[...wishlist, data]
+        setwishlist(newdata);
+        localStorage.setItem("wishlist", JSON.stringify(newdata));
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
+
 
   return (
     <Card w="100%" m="auto" mt={10} position="relative" borderRadius={20}>
@@ -80,12 +102,12 @@ export default function Items({ data }) {
       {whit ? (
         <BsHeartFill
           className={`${Styles.icon} ${Styles.icon2}`}
-          onClick={Setwhitlist}
+          onClick={addtowislist}
         />
       ) : (
         <BsHeart
           className={`${Styles.icon} ${Styles.icon1}`}
-          onClick={Setwhitlist}
+          onClick={addtowislist}
         />
       )}
       {data.stocks <= 0 ? (
