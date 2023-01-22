@@ -34,7 +34,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Homepage />
-            <LargeWithAppLinksAndSocial/>
+            <LargeWithAppLinksAndSocial />
           </>
         }
       ></Route>
@@ -44,6 +44,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Login />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       ></Route>
@@ -53,6 +54,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Signup />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       ></Route>
@@ -62,6 +64,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <AdminLogin />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       ></Route>
@@ -71,6 +74,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <NewProduct />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -80,6 +84,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Bag />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -89,6 +94,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <CreditCard />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -99,6 +105,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Wallet />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -108,6 +115,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Desk />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -117,6 +125,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Watch />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -126,6 +135,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Cart />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -135,6 +145,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Sales />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
@@ -144,6 +155,7 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <SingleProduct />
+            <LargeWithAppLinksAndSocial />
           </>
         }
       />
