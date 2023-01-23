@@ -55,7 +55,7 @@
 </p>
 
 It’s Group project where we've used MERN stack to build the dailyobjects.com with our creativity along with frontend and backend integration
-its Fully Responsive. Daily Objects is a E-Commerce Websiter who deals with the cases,covers & bags. Created Carts, Products, Users, Admin API ( Back-End ).
+its Fully Responsive. Daily Objects is a E-Commerce Website who deals with the cases,covers & bags. Created Carts, Products, Users, Admin API ( Back-End ).
 
 ## Home Page
 ![homePage](https://github.com/vraj79/faithful-lock-5927/blob/fw20_1138_day-4/frontend/public/project_ss/Screenshot%20(62).png)
