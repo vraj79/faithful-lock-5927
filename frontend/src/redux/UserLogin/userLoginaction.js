@@ -1,7 +1,7 @@
  
 import axios from "axios";
 import { LOGOUT_USER_SUCCESS, USER_LOGIN_ERROR, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS } from "./userLogin.type";
-const Url = "http://localhost:8080";
+const Url = "https://dailybackend.onrender.com";
 
  
  export const Userlogin = (creds) => async(dispatch) => {

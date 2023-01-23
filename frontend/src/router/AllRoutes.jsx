@@ -24,6 +24,8 @@ import LargeWithAppLinksAndSocial from "../components/pages/Footer/Footer";
 import HomeNavbar from "../components/HomeNavbar/HomeNavbar";
 // import UserRequireAuth from "../hoc/UserRequireAuth";
 import CreditCard from "../components/Card/CreditCard";
+import Address from "../components/pages/Address/Address";
+import Whislist from "../components/pages/Wishlist/Whislist";
 
 const AllRoutes = () => {
   return (
@@ -98,6 +100,16 @@ const AllRoutes = () => {
           </>
         }
       />
+      <Route
+        path="/address"
+        element={
+          <>
+            <HomeNavbar />
+            <Address />
+            <LargeWithAppLinksAndSocial />
+          </>
+        }
+      />
 
       <Route
         path="/wallet"
@@ -135,6 +147,16 @@ const AllRoutes = () => {
           <>
             <HomeNavbar />
             <Cart />
+            <LargeWithAppLinksAndSocial />
+          </>
+        }
+      />
+      <Route
+        path="/wishlist"
+        element={
+          <>
+            <HomeNavbar />
+            <Whislist />
             <LargeWithAppLinksAndSocial />
           </>
         }

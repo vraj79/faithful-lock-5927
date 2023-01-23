@@ -1,29 +1,18 @@
 import { Box, Card, CardFooter, Image, Stack, Text } from "@chakra-ui/react";
 import Styles from "./Items.module.css";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-// let data = {
-//   img1: "https://images.dailyobjects.com/marche/product-images/1201/all-beige-pedal-daypack-images/All-Beige-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-393,h-485,dpr-1",
-//   title: "All Beige Pedal Daypack",
-//   img2: "https://images.dailyobjects.com/marche/product-images/1201/all-beige-pedal-daypack-images/All-Beige-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-392,h-483,dpr-1",
-//   price: 1699,
-//   strike: 2999,
-//   category: "bag",
-//   qunatity: 1,
-//   stocks: 0,
-// };
 export default function Items({ data }) {
-  // console.log(data.category=="bag");
   const user = useSelector((user) => user.loginAuth.user);
+  const uid=user._id
   const [wishlist, setwishlist] = useState(JSON.parse(localStorage.getItem("wishlist")) || user.wishlist);
 
   const navigate = useNavigate();
-  // const id=useParams()
   const [whit, setWhit] = useState(false);
   const ref = useRef(null);
   const ChangeImage1 = () => {
@@ -32,25 +21,42 @@ export default function Items({ data }) {
   const ChangeImage = () => {
     ref.current.src = data.img2;
   };
-  const addtowislist = async () => {
-    const cartlist = wishlist.filter((elem) => elem._id === data._id);
-    try {
-      if (cartlist.length > 0) {
-        alert("Already Add in wishlist");
-        setWhit(true);
-      } else {
-        const res = await axios.post(
-          `http://localhost:8080/cart/wishlist/${user._id}`,
-          data
-        );
-        const newdata=[...wishlist, data]
-        setwishlist(newdata);
-        localStorage.setItem("wishlist", JSON.stringify(newdata));
-      }
-    } catch (err) {
-      console.log(err);
+
+  useEffect(() => {
+    const getuser = async(id) => {
+      const newuser = await axios.get(`https://dailybackend.onrender.com/user/${id}`);
+      const loginuser=newuser.data.user[0]
+      const whishl = loginuser.wishlist.filter((elem) => elem._id === data._id);
+      if (whishl.length > 0) setWhit(true);
+      localStorage.setItem('user', JSON.stringify(loginuser))
+      localStorage.setItem("cart", JSON.stringify(loginuser.cartitem));
+      localStorage.setItem("wishlist", JSON.stringify(loginuser.wishlist));
     }
-  };
+    getuser(uid)
+
+  },[uid])
+ wishlist.filter((elem) => elem._id === data._id);
+
+ const addtowislist = async () => {
+  const cartlist = wishlist.filter((elem) => elem._id === data._id);
+  try {
+    if (cartlist.length > 0) {
+      alert("Already Add in wishlist");
+    } else {
+      const res = await axios.post(
+        `https://dailybackend.onrender.com/wishlist/add/${uid}`,
+        data
+      );
+      const newdata = [...wishlist, data];
+      setWhit(true);
+
+      setwishlist(newdata);
+      localStorage.setItem("wishlist", JSON.stringify(newdata));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 
   return (

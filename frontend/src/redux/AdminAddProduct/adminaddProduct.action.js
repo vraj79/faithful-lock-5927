@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ADMIN_ADD_PRODUCT } from "./adminaddProduct.type";
 
-const mainUrl = "http://localhost:8080";
+const mainUrl = "https://dailybackend.onrender.com";
 const token = localStorage.getItem("AdminToken");
 const config = {
   headers: {

@@ -5,6 +5,10 @@
   border: 1px solid gray;
   align-items: center;
 }
+/* .navbar>div:first-child()>img{
+  width: 100px;
+  height: 100px;
+} */
 .navItems {
   display: flex;
   gap: 1rem;
