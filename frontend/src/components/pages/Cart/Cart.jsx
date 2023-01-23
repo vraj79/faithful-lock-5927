@@ -11,12 +11,13 @@ import { useSelector } from "react-redux";
 const Cart = () => {
   const [price, setPrice] = useState(0);
   const user = useSelector((user) => user.loginAuth.user);
-  const [data,setdata]=useState(JSON.parse(localStorage.getItem("cart")) || [])
+  const [data, setdata] = useState(JSON.parse(localStorage.getItem("cart")) || [])
 
   const [striker, setStriker] = useState(0);
   const [qua, setQua] = useState(1);
-     
+
   const navigate = useNavigate();
+
   const checkPrice = () => {
     let pr = data.reduce((p, elem) => p + Number(elem.price), 0);
     setPrice(pr);
@@ -24,7 +25,7 @@ const Cart = () => {
     setStriker(st-pr);
     
   };
-  let id="63cd665877a37e645aa689ad"
+
   const getuser = async (id) => {
     const newuser = await axios.get(
       `https://dailybackend.onrender.com/user/${id}`
@@ -50,7 +51,7 @@ const Cart = () => {
       <div className={styles.empty}>
         <p>YOUR SHOPPING CART IS EMPTY</p>
         <p>Fill it with DailyObjects</p>
-
+        <p><Button size='lg' colorScheme={"teal"}>Browse Products</Button></p>
         <p>
           <Button
             onClick={() => navigate("/sale")}
@@ -60,89 +61,86 @@ const Cart = () => {
             Browse Products
           </Button>
         </p>
-
-        <p><Button size='lg' colorScheme={"teal"}>Browse Products</Button></p>
-
       </div>
     );
   };
 
-  return (
-    <div className={styles.cart}>
-      <div>
-        {data.length === 0 ? (
-          <EmptyCart />
-        ) : (
-          <>
-            <p className={styles.heading}>SHOPPING BAG</p>
-            <hr />
-            <Box
-              display={{ lg: "grid", md: "grid", base: "block" }}
-              className={styles.cartItem}
-            >
-              <div>
-                {data.map((ele) => {
-                  return (
-                    <div>
-                      <div className={styles.cartItemData}>
-                        <img src={ele.img1} alt="" />
-                        <div>
-                          <p>{ele.title}</p>
-                          <span className={styles.price}>Rs.{ele.price}</span>
-                          <span className={styles.line}>{ele.strike}</span>
-                          <Flex style={{ margin: "2.5rem 0" }} gap={10}>
-                            <div>
-                              <button
-                                onClick={() => setQua(qua - 1)}
-                                disabled={qua === 1}
-                                style={{
-                                  width: "5vh",
-                                  height: "5vh",
-                                  border: "2px solid gray",
-                                }}
-                              >
-                                -
-                              </button>
-                              <button
-                                style={{
-                                  width: "5vh",
-                                  height: "5vh",
-                                  border: "2px solid gray",
-                                }}
-                              >
-                                {qua}
-                              </button>
-                              <button
-                                onClick={() => setQua(qua + 1)}
-                                disabled={qua === 5}
-                                style={{
-                                  width: "5vh",
-                                  height: "5vh",
-                                  border: "2px solid gray",
-                                }}
-                              >
-                                +
-                              </button>
-                            </div>
-                            <div>
-                              <RiDeleteBin6Line size={30} onClick={() =>deleteitem(id,ele)} />
-                            </div>
-                          </Flex>
+    return (
+      <div className={styles.cart}>
+        <div>
+          {data.length === 0 ? (
+            <EmptyCart />
+          ) : (
+            <>
+              <p className={styles.heading}>SHOPPING BAG</p>
+              <hr />
+              <Box
+                display={{ lg: "grid", md: "grid", base: "block" }}
+                className={styles.cartItem}
+              >
+                <div>
+                  {data.map((ele) => {
+                    return (
+                      <div>
+                        <div className={styles.cartItemData}>
+                          <img src={ele.img1} alt="" />
+                          <div>
+                            <p>{ele.title}</p>
+                            <span className={styles.price}>Rs.{ele.price}</span>
+                            <span className={styles.line}>{ele.strike}</span>
+                            <Flex style={{ margin: "2.5rem 0" }} gap={10}>
+                              <div>
+                                <button
+                                  onClick={() => setQua(qua - 1)}
+                                  disabled={qua === 1}
+                                  style={{
+                                    width: "5vh",
+                                    height: "5vh",
+                                    border: "2px solid gray",
+                                  }}
+                                >
+                                  -
+                                </button>
+                                <button
+                                  style={{
+                                    width: "5vh",
+                                    height: "5vh",
+                                    border: "2px solid gray",
+                                  }}
+                                >
+                                  {qua}
+                                </button>
+                                <button
+                                  onClick={() => setQua(qua + 1)}
+                                  disabled={qua === 5}
+                                  style={{
+                                    width: "5vh",
+                                    height: "5vh",
+                                    border: "2px solid gray",
+                                  }}
+                                >
+                                  +
+                                </button>
+                              </div>
+                              <div>
+                                <RiDeleteBin6Line size={30} onClick={() => deleteitem(user._id, ele)} />
+                              </div>
+                            </Flex>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <div>
-                  <OrderSummary price={price} discount={striker} total={data.length } />
-              </div>
-            </Box>
-          </>
-        )}
+                    );
+                  })}
+                </div>
+                <div>
+                  <OrderSummary price={price} discount={striker} total={data.length} />
+                </div>
+              </Box>
+            </>
+          )}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
 export default Cart;
