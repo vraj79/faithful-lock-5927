@@ -5,14 +5,13 @@ import {
   ISLoding,
 } from "./adminLogin.type";
 import axios from "axios";
- 
+
 const mainUrl = "https://dailybackend.onrender.com";
 
 export const adminLogin = (cred) => async (dispatch) => {
   dispatch({ type: ISLoding });
   try {
     let res = await axios.post(`${mainUrl}/admin/login`, cred);
-    // console.log(res.data);
     dispatch({ type: ADMIN_LOGIN, payload: res.data });
     return res.data;
   } catch (error) {

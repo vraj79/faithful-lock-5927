@@ -9,7 +9,6 @@ import {
 } from "./actionType";
 const initailState = { data1: [], orignal: [] };
 export const sortReducer = (state = initailState, action) => {
-  console.log(action.type);
   switch (action.type) {
     case SortHTL:
       return {

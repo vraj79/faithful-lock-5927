@@ -24,7 +24,7 @@ export const ACTION_GET_CART = (token) => async (dispatch) => {
   try {
     let res = await axios.get("https://sample-backend-cvar.onrender.com/cart");
     //   console.log(res.data)
-    const unique = res.data.find((el) => el.token == token);
+    const unique = res.data.find((el) => el.token === token);
     // console.log(unique)
     return dispatch({ type: GET_CART_ITEMS_SUCCESS, payload: unique.cartData });
   } catch (err) {

@@ -42,7 +42,6 @@ export const adminShowProductReducer = (
       };
     }
     case ADMIN_SOWONE_PRODUCT: {
-      console.log(payload.data);
       return {
         ...state,
         oneProduct: payload.data,

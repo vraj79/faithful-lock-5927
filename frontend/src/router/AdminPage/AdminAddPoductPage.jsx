@@ -12,7 +12,6 @@ function AdminAddPoductPage() {
           maxW={"80%"}
           margin={"auto"}
           mr={"25px"}
-          //   border={"1px solid red"}
         >
           <AdminAddProduct />
         </Container>

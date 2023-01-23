@@ -1,10 +1,10 @@
 import { Box, Button, HStack, Text } from '@chakra-ui/react'
 import React from 'react'
-import { useState } from 'react';
+// import { useState } from 'react';
 
 export default function Already({onClick,data,show }) {
-    const [addre, setData] = useState(data);
-    const { name, add, landmark, pin, mob } = addre;
+    // const [addre, setData] = useState(data);
+    const { name, add, landmark, pin, mob } = data;
     
   return (
       <Box w={["100%","100%","70%"]} border="2px solid gray" borderRadius="10px" p="3vh" fontSize={{lg:"20px",md:"10px",base:"20px"} }fontWeight={500} >

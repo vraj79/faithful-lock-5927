@@ -48,7 +48,7 @@ const SocialButton = ({ children, label, href }) => {
 
 export const Footer = () => {
   return (
-    <div style={{ marginTop: "-1rem" }}>
+    <div style={{ marginTop: "1rem" }}>
       <Box
         bg={useColorModeValue("gray.50", "gray.900")}
         color={useColorModeValue("gray.700", "gray.200")}

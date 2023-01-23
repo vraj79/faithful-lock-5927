@@ -43,8 +43,6 @@ if(query){list=list.filter((elem)=>elem.category===query)}
       list = Reset;
     }
  if (query === "" && !count && list.length > 0 && sortdata==="") {
-    // console.log("query is empty");
-    // console.log({"REST": Reset})
     dispatch(handleProductdata(list));
   }
   return (
