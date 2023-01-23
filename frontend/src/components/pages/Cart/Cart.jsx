@@ -51,7 +51,6 @@ const Cart = () => {
       <div className={styles.empty}>
         <p>YOUR SHOPPING CART IS EMPTY</p>
         <p>Fill it with DailyObjects</p>
-        <p><Button size='lg' colorScheme={"teal"}>Browse Products</Button></p>
         <p>
           <Button
             onClick={() => navigate("/sale")}
@@ -81,7 +80,7 @@ const Cart = () => {
                 <div>
                   {data.map((ele) => {
                     return (
-                      <div>
+                      <div onClick={()=>navigate(`/product/${ele._id}`)}>
                         <div className={styles.cartItemData}>
                           <img src={ele.img1} alt="" />
                           <div>

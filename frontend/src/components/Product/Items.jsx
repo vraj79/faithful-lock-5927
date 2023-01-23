@@ -35,7 +35,7 @@ export default function Items({ data }) {
     getuser(uid)
 
   },[uid])
- wishlist.filter((elem) => elem._id === data._id);
+//  wishlist.filter((elem) => elem._id === data._id);
 
  const addtowislist = async () => {
   const cartlist = wishlist.filter((elem) => elem._id === data._id);

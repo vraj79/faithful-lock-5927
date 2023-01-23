@@ -178,7 +178,7 @@ export default function SingleProduct() {
             {cartlists ? (
               <Button
                 onClick={() => navigate("/cart")}
-                disabled={data.stocks <= 0 ? true : false}
+                disabled={data.stocks <= 0}
                 className={data.stocks <= 0 ? Styles.btn1 : Styles.btn}
               >
                 GO TO CART
@@ -186,7 +186,7 @@ export default function SingleProduct() {
             ) : (
               <Button
                 onClick={addtocart}
-                disabled={data.stocks <= 0 ? true : false}
+                disabled={data.stocks <= 0}
                 className={data.stocks <= 0 ? Styles.btn1 : Styles.btn}
               >
                 {data.stocks <= 0 ? "NOTIFY SOON" : "ADD TO CART"}
