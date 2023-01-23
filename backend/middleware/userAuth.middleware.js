@@ -14,4 +14,4 @@ const Authenticate = (req,res,next) => {
   
 }
 
-module.exports= Authenticate
+module.exports = Authenticate

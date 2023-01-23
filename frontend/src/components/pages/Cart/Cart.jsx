@@ -15,10 +15,8 @@ const Cart = () => {
 
   const [striker, setStriker] = useState(0);
   const [qua, setQua] = useState(1);
-
+     
   const navigate = useNavigate();
-
-  // let data = 
   const checkPrice = () => {
     let pr = data.reduce((p, elem) => p + Number(elem.price), 0);
     setPrice(pr);
@@ -32,8 +30,6 @@ const Cart = () => {
       `https://dailybackend.onrender.com/user/${id}`
     );
     const loginuser = newuser.data.user[0];
-    // const whishl = loginuser.wishlist.filter((elem) => elem._id === data._id);
-    // if (whishl.length > 0) setWhit(true);
     localStorage.setItem("user", JSON.stringify(loginuser));
     localStorage.setItem("cart", JSON.stringify(loginuser.cartitem));
     localStorage.setItem("wishlist", JSON.stringify(loginuser.wishlist));
@@ -54,6 +50,7 @@ const Cart = () => {
       <div className={styles.empty}>
         <p>YOUR SHOPPING CART IS EMPTY</p>
         <p>Fill it with DailyObjects</p>
+
         <p>
           <Button
             onClick={() => navigate("/sale")}
@@ -63,6 +60,9 @@ const Cart = () => {
             Browse Products
           </Button>
         </p>
+
+        <p><Button size='lg' colorScheme={"teal"}>Browse Products</Button></p>
+
       </div>
     );
   };
