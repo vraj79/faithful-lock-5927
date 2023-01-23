@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  HStack,
-  Image,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Button, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { useEffect } from "react";
@@ -26,62 +19,55 @@ export default function SingleProduct() {
   const [wishlist, setwishlist] = useState(
     JSON.parse(localStorage.getItem("wishlist")) || user.wishlist
   );
-
-
   const [whit, setWhit] = useState(false);
   const [cartlists, setcartlist] = useState(false);
-  console.log(user.cartitem);
   const { id } = useParams();
   const ref = useRef(null);
-  // const Setwhitlist = async () => {
-  //   try {
-  //     const res = await axios.post(
-  //       `https://dailybackend.onrender.com/wishlist/add/${user._id}`,
-  //       data
-  //     );
-  //     console.log(res);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
   const getdata = async (id) => {
     try {
       const res = await axios(
         `https://dailybackend.onrender.com/products/${id}`
       );
       setData(res.data.totalProduct);
-      const whishl =wishlist.filter((elem) => elem._id === res.data.totalProduct._id);
+      const whishl = wishlist.filter(
+        (elem) => elem._id === res.data.totalProduct._id
+      );
+      const cartlist = cartdata.filter(
+        (elem) => elem._id === res.data.totalProduct._id
+      );
+      if (cartlist.length > 0) setcartlist(true);
       if (whishl.length > 0) setWhit(true);
     } catch (err) {
       console.log(err);
     }
   };
 
- 
-
-  // useEffect(() => {
-    const getuser = async (id) => {
-      const newuser = await axios.get(
-        `https://dailybackend.onrender.com/user/${id}`
-      );
-      const loginuser = newuser.data.user[0];
-      const whishl = loginuser.wishlist.filter((elem) => elem._id === data._id);
-      if (whishl.length > 0) setWhit(true);
-      localStorage.setItem("user", JSON.stringify(loginuser));
-      localStorage.setItem("cart", JSON.stringify(loginuser.cartitem));
-      localStorage.setItem("wishlist", JSON.stringify(loginuser.wishlist));
-    };
-   
+  const getuser = async (id) => {
+    const newuser = await axios.get(
+      `https://dailybackend.onrender.com/user/${id}`
+    );
+    const loginuser = newuser.data.user[0];
+    const whishl = loginuser.wishlist.filter((elem) => elem._id === data._id);
+    if (whishl.length > 0) setWhit(true);
+    localStorage.setItem("user", JSON.stringify(loginuser));
+    localStorage.setItem("cart", JSON.stringify(loginuser.cartitem));
+    localStorage.setItem("wishlist", JSON.stringify(loginuser.wishlist));
+  };
 
   const deleteitem = async (id, deleted) => {
-     const res=await axios.post( `https://dailybackend.onrender.com/wishlist/delete/${id}`, deleted);
-    const newdata = data.filter((elem) => elem._id != res.data._id);
-    localStorage.setItem('wishlist', JSON.stringify(newdata));
-  }
+    setWhit(false)
+    const res= await axios.post(
+      `https://dailybackend.onrender.com/wishlist/delete/${id}`,
+      deleted
+    );
+    const newdata = wishlist.filter((elem) => elem._id !== res.data._id);
+    localStorage.setItem("wishlist", JSON.stringify(newdata));
+    setwishlist(newdata);
+  };
   useEffect(() => {
     getdata(id);
     getuser(uid);
-  }, [id,uid,data]);
+  }, [id, uid]);
 
   const addtowislist = async () => {
     const cartlist = wishlist.filter((elem) => elem._id === data._id);
@@ -89,8 +75,7 @@ export default function SingleProduct() {
       if (cartlist.length > 0) {
         alert("Already Add in wishlist");
       } else {
-        const res = await axios.post(
-          `https://dailybackend.onrender.com/wishlist/add/${user._id}`,
+        await axios.post(`https://dailybackend.onrender.com/wishlist/add/${user._id}`,
           data
         );
         const newdata = [...wishlist, data];
@@ -111,7 +96,7 @@ export default function SingleProduct() {
         setcartlist(true);
         alert("Already Add in Cart");
       } else {
-        const res = await axios.post(
+        await axios.post(
           `https://dailybackend.onrender.com/cart/add/${user._id}`,
           data
         );
@@ -151,7 +136,7 @@ export default function SingleProduct() {
             {whit ? (
               <BsHeartFill
                 className={`${Styles.icon} ${Styles.icon2}`}
-                onClick={deleteitem}
+                onClick={()=>deleteitem(uid,data)}
               />
             ) : (
               <BsHeart
@@ -178,7 +163,7 @@ export default function SingleProduct() {
             {cartlists ? (
               <Button
                 onClick={() => navigate("/cart")}
-                disabled={data.stocks <= 0 ? true : false}
+                disabled={data.stocks <= 0}
                 className={data.stocks <= 0 ? Styles.btn1 : Styles.btn}
               >
                 GO TO CART
@@ -186,7 +171,7 @@ export default function SingleProduct() {
             ) : (
               <Button
                 onClick={addtocart}
-                disabled={data.stocks <= 0 ? true : false}
+                disabled={data.stocks <= 0}
                 className={data.stocks <= 0 ? Styles.btn1 : Styles.btn}
               >
                 {data.stocks <= 0 ? "NOTIFY SOON" : "ADD TO CART"}

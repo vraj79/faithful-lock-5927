@@ -27,7 +27,6 @@ import {
     };
     const handleError = () => {
       let Error = input.name === ''
-      // console.log(isError)
       setError({
         ...isError,
         name: input.name === "",
@@ -48,7 +47,6 @@ import {
             !isError.pin 
           ) {
               //Send Post request for add new address
-            console.log("clicked")
               onClick(false);
           }
           

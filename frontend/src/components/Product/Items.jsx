@@ -3,7 +3,7 @@ import Styles from "./Items.module.css";
 import React, { useRef, useState,useEffect } from "react";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -35,7 +35,7 @@ export default function Items({ data }) {
     getuser(uid)
 
   },[uid])
- wishlist.filter((elem) => elem._id === data._id);
+//  wishlist.filter((elem) => elem._id === data._id);
 
  const addtowislist = async () => {
   const cartlist = wishlist.filter((elem) => elem._id === data._id);
@@ -43,8 +43,7 @@ export default function Items({ data }) {
     if (cartlist.length > 0) {
       alert("Already Add in wishlist");
     } else {
-      const res = await axios.post(
-        `https://dailybackend.onrender.com/wishlist/add/${uid}`,
+   await axios.post(`https://dailybackend.onrender.com/wishlist/add/${uid}`,
         data
       );
       const newdata = [...wishlist, data];
@@ -58,6 +57,13 @@ export default function Items({ data }) {
   }
 };
 
+  const deleteitem = async (id, deleted) => {
+    setWhit(false);
+  const res=await axios.post( `https://dailybackend.onrender.com/wishlist/delete/${id}`, deleted);
+ const newdata = wishlist.filter((elem) => elem._id !== res.data._id);
+ localStorage.setItem('wishlist', JSON.stringify(newdata));
+ setwishlist(newdata);
+}
 
   return (
     <Card w="100%" m="auto" mt={10} position="relative" borderRadius={20}>
@@ -108,7 +114,7 @@ export default function Items({ data }) {
       {whit ? (
         <BsHeartFill
           className={`${Styles.icon} ${Styles.icon2}`}
-          onClick={addtowislist}
+          onClick={()=>deleteitem(uid,data)}
         />
       ) : (
         <BsHeart

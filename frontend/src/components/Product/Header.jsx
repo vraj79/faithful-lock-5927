@@ -22,7 +22,7 @@ export default function Header({ title, setQuery, setSortdata ,query}) {
         <Image
           src="https://images.dailyobjects.com/marche/icons/new-arrival/all.png?tr=cm-pad_resize,v-2,w-70,h-70,dpr-1"
           alt="All"
-          className={query==""?`${Styles.text1} ${Styles.text2}`:Styles.text1}
+          className={query===""?`${Styles.text1} ${Styles.text2}`:Styles.text1}
           onClick={() => setQuery("")}
         />
         <Text className={Styles.text}>All</Text>
@@ -61,7 +61,7 @@ export default function Header({ title, setQuery, setSortdata ,query}) {
         <Image
           src="https://images.dailyobjects.com/marche/icons/new-arrival/all.png?tr=cm-pad_resize,v-2,w-70,h-70,dpr-1"
           alt="All"
-          className={query==""?`${Styles.text1} ${Styles.text2}`:Styles.text1}
+          className={query===""?`${Styles.text1} ${Styles.text2}`:Styles.text1}
           onClick={() => setQuery("")}
         />
         <Text className={Styles.text}>All</Text>

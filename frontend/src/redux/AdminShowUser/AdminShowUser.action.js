@@ -12,7 +12,6 @@ export const getAllUser = () => async (dispatch) => {
   try {
     let res = await axios.get(`${mainUrl}/alluser/add`, config);
     dispatch({ type: ADMIN_GET_ALL_USER, payload: res.data });
-    console.log(res.data);
   } catch (error) {
     console.log(error);
   }

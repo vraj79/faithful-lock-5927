@@ -4,7 +4,6 @@ import { Navigate, useLocation } from "react-router-dom";
 const UserRequireAuth = ({ children }) => {
   const isAuth = useSelector((store) => store.loginAuth.isAuth);
   const { pathname } = useLocation();
-console.log(pathname)
   if (isAuth) {
     return children;
   } else {

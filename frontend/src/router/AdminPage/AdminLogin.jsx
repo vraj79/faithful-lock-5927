@@ -8,7 +8,6 @@ import {
   Image,
   Input,
   Stack,
-  Toast,
   useToast,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +17,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const AdminLogin = () => {
   const [loginCred, setLoginCred] = useState({});
   const dispatch = useDispatch();
-  const { isAuth, error, isLoading } = useSelector((store) => store.adminAuth);
+  const { isAuth, error } = useSelector((store) => store.adminAuth);
   const { state } = useLocation();
   const naviget = useNavigate();
   const toast = useToast();
@@ -37,7 +36,6 @@ const AdminLogin = () => {
   useEffect(() => {
     if (isAuth) {
       if (state.form) {
-        console.log(state.form);
         naviget(state.form, { replace: true });
       } else {
         naviget("/admin");

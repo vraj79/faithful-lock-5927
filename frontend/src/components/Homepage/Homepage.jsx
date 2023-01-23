@@ -81,7 +81,6 @@ const newArrivals=[
 const Homepage = () => {
   const slideCount = useBreakpointValue({ sm:2,base: 1,md:3,lg: 4 })
   const isDesktop = useBreakpointValue({ base: false,md:true, lg: true })
-
   return (
     <div className={styles.homepage}>
       <Box className={styles.firstHomeItem}>
