@@ -9,7 +9,7 @@ export default function NewProduct() {
   const [page, setPage] = useState(1);
   let category;
   if(query){category=query}
-  let url=`http://localhost:8080/products?maincategory=new arrivals&page=${page}&${category}&sort=${sortdata}`;
+  let url=`https://dailybackend.onrender.com/products?maincategory=new arrivals&page=${page}&${category}&sort=${sortdata}`;
   let { loading, error, list } = useFetch(query, page,url);
   const loader = useRef(null);
   const handleObserver = useCallback((entries) => {

@@ -1,85 +1,132 @@
 import styles from "./cart.module.css";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { Box, Button ,Flex} from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { OrderSummary } from "./OrderSummary";
 import { useNavigate } from "react-router-dom";
-
-
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
-  // const data = [
-  //   {
-  //     img1:
-  //       "https://images.dailyobjects.com/marche/product-images/1201/all-beige-pedal-daypack-images/All-Beige-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-393,h-485,dpr-1",
-  //     title: "All Beige Pedal Daypack",
-  //     img2:
-  //       "https://images.dailyobjects.com/marche/product-images/1201/all-beige-pedal-daypack-images/All-Beige-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-392,h-483,dpr-1",
-  //     price: 1699,
-  //     strike: 2999,
-  //     category: "bag",
-  //     stocks: 2
-  //   },
-  //   {
-  //     "img1": "https://images.dailyobjects.com/marche/product-images/1201/all-blue-pedal-daypack-images/All-Blue-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-393,h-485,dpr-1",
-  //     "title": "All Blue Pedal Daypack",
-  //     "img2": "https://images.dailyobjects.com/marche/product-images/1201/all-blue-pedal-daypack-images/All-Blue-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-392,h-483,dpr-1",
-  //     "price": 1299,
-  //     "strike": 2599,
-  //     "category": "bag",
-  //     "stocks": 5
-  //   }
-  // ];
-  const navigate=useNavigate()
+  const [price, setPrice] = useState(0);
+  const user = useSelector((user) => user.loginAuth.user);
+  const [data,setdata]=useState(JSON.parse(localStorage.getItem("cart")) || [])
 
-  
-  const data=JSON.parse(localStorage.getItem("cart"))||[]
+  const [striker, setStriker] = useState(0);
+  const [qua, setQua] = useState(1);
 
-  
+  const navigate = useNavigate();
 
-  const EmptyCart=()=>{
+  // let data = 
+  const checkPrice = () => {
+    let pr = data.reduce((p, elem) => p + Number(elem.price), 0);
+    setPrice(pr);
+    let st = data.reduce((p, elem) => p + Number(elem.strike), 0);
+    setStriker(st-pr);
+    
+  };
+  let id="63cd665877a37e645aa689ad"
+  const getuser = async (id) => {
+    const newuser = await axios.get(
+      `https://dailybackend.onrender.com/user/${id}`
+    );
+    const loginuser = newuser.data.user[0];
+    // const whishl = loginuser.wishlist.filter((elem) => elem._id === data._id);
+    // if (whishl.length > 0) setWhit(true);
+    localStorage.setItem("user", JSON.stringify(loginuser));
+    localStorage.setItem("cart", JSON.stringify(loginuser.cartitem));
+    localStorage.setItem("wishlist", JSON.stringify(loginuser.wishlist));
+  };
+  useEffect(() => {
+    checkPrice();
+    getuser(user._id)
+  }, [qua,user._id,data]);
+
+  const deleteitem = async (id, deleted) => {
+     const res=await axios.post( `https://dailybackend.onrender.com/cart/delete/${id}`, deleted);
+    const newdata = data.filter((elem) => elem._id != res.data._id);
+    localStorage.setItem('cart', JSON.stringify(newdata));
+    setdata(newdata);
+  }
+  const EmptyCart = () => {
     return (
       <div className={styles.empty}>
         <p>YOUR SHOPPING CART IS EMPTY</p>
         <p>Fill it with DailyObjects</p>
-        <p><Button onClick={()=>navigate("/sale")} size='lg' colorScheme={"teal"}>Browse Products</Button></p>
+        <p>
+          <Button
+            onClick={() => navigate("/sale")}
+            size="lg"
+            colorScheme={"teal"}
+          >
+            Browse Products
+          </Button>
+        </p>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className={styles.cart}>
       <div>
-        {data.length === 0
-          ? <EmptyCart/>
-          : <>
-                <p className={styles.heading}>SHOPPING BAG</p>
-          <hr />
-              <div className={styles.cartItem}>
+        {data.length === 0 ? (
+          <EmptyCart />
+        ) : (
+          <>
+            <p className={styles.heading}>SHOPPING BAG</p>
+            <hr />
+            <Box
+              display={{ lg: "grid", md: "grid", base: "block" }}
+              className={styles.cartItem}
+            >
               <div>
-                {data.map(ele => {
+                {data.map((ele) => {
                   return (
                     <div>
                       <div className={styles.cartItemData}>
                         <img src={ele.img1} alt="" />
                         <div>
-                          <p>
-                            {ele.title}
-                          </p>
-                          <span className={styles.price}>
-                            Rs.{ele.price}
-                          </span>
-                          <span className={styles.line}>
-                            {ele.strike}
-                          </span>
-                          <Flex style={{margin:"2.5rem 0"}} gap={10}>
-                          <div>
-                            <Button>-</Button>
-                            <Button>1</Button>
-                            <Button>+</Button>
-                          </div>
-                          <div>
-                            <RiDeleteBin6Line size={30}/>
-                          </div>
+                          <p>{ele.title}</p>
+                          <span className={styles.price}>Rs.{ele.price}</span>
+                          <span className={styles.line}>{ele.strike}</span>
+                          <Flex style={{ margin: "2.5rem 0" }} gap={10}>
+                            <div>
+                              <button
+                                onClick={() => setQua(qua - 1)}
+                                disabled={qua === 1}
+                                style={{
+                                  width: "5vh",
+                                  height: "5vh",
+                                  border: "2px solid gray",
+                                }}
+                              >
+                                -
+                              </button>
+                              <button
+                                style={{
+                                  width: "5vh",
+                                  height: "5vh",
+                                  border: "2px solid gray",
+                                }}
+                              >
+                                {qua}
+                              </button>
+                              <button
+                                onClick={() => setQua(qua + 1)}
+                                disabled={qua === 5}
+                                style={{
+                                  width: "5vh",
+                                  height: "5vh",
+                                  border: "2px solid gray",
+                                }}
+                              >
+                                +
+                              </button>
+                            </div>
+                            <div>
+                              <RiDeleteBin6Line size={30} onClick={() =>deleteitem(id,ele)} />
+                            </div>
                           </Flex>
                         </div>
                       </div>
@@ -87,17 +134,15 @@ const Cart = () => {
                   );
                 })}
               </div>
-                  <div>
-                    <OrderSummary/>
-                  </div>
-                </div>
-              </>
-            }
+              <div>
+                  <OrderSummary price={price} discount={striker} total={data.length } />
+              </div>
+            </Box>
+          </>
+        )}
       </div>
     </div>
   );
-
-  
 };
 
 export default Cart;

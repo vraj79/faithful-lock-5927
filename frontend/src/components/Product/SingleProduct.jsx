@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 
 export default function SingleProduct() {
   const user = useSelector((user) => user.loginAuth.user);
-  const uid=user._id
+  const uid = user._id;
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const [cartdata, setCartdata] = useState(
@@ -28,55 +28,70 @@ export default function SingleProduct() {
     JSON.parse(localStorage.getItem("wishlist")) || user.wishlist
   );
 
-  useEffect(() => {
-    const getuser = async(id) => {
-      const newuser = await axios.get(`http://localhost:8080/user/${id}`);
-      const loginuser=newuser.data.user[0]
-      localStorage.setItem('user', JSON.stringify(loginuser))
-      localStorage.setItem("cart", JSON.stringify(loginuser.cartitem));
-      localStorage.setItem("wishlist", JSON.stringify(loginuser.wishlist));
-    }
-    getuser(uid)
-  },[uid])
+
   const [whit, setWhit] = useState(false);
   const [cartlists, setcartlist] = useState(false);
   console.log(user.cartitem);
   const { id } = useParams();
   const ref = useRef(null);
-  const Setwhitlist = async () => {
-    try {
-      const res = await axios.post(
-        `http://localhost:8080/wishlist/add/${user._id}`,
-        data
-      );
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const Setwhitlist = async () => {
+  //   try {
+  //     const res = await axios.post(
+  //       `https://dailybackend.onrender.com/wishlist/add/${user._id}`,
+  //       data
+  //     );
+  //     console.log(res);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   const getdata = async (id) => {
     try {
-      const res = await axios(`http://localhost:8080/products/${id}`);
+      const res = await axios(
+        `https://dailybackend.onrender.com/products/${id}`
+      );
       setData(res.data.totalProduct);
+      const whishl =wishlist.filter((elem) => elem._id === res.data.totalProduct._id);
+      if (whishl.length > 0) setWhit(true);
     } catch (err) {
       console.log(err);
     }
   };
 
+ 
+
+  // useEffect(() => {
+    const getuser = async (id) => {
+      const newuser = await axios.get(
+        `https://dailybackend.onrender.com/user/${id}`
+      );
+      const loginuser = newuser.data.user[0];
+      const whishl = loginuser.wishlist.filter((elem) => elem._id === data._id);
+      if (whishl.length > 0) setWhit(true);
+      localStorage.setItem("user", JSON.stringify(loginuser));
+      localStorage.setItem("cart", JSON.stringify(loginuser.cartitem));
+      localStorage.setItem("wishlist", JSON.stringify(loginuser.wishlist));
+    };
+   
+
+  const deleteitem = async (id, deleted) => {
+     const res=await axios.post( `https://dailybackend.onrender.com/wishlist/delete/${id}`, deleted);
+    const newdata = data.filter((elem) => elem._id != res.data._id);
+    localStorage.setItem('wishlist', JSON.stringify(newdata));
+  }
   useEffect(() => {
     getdata(id);
-  }, [id]);
+    getuser(uid);
+  }, [id,uid,data]);
 
   const addtowislist = async () => {
     const cartlist = wishlist.filter((elem) => elem._id === data._id);
     try {
       if (cartlist.length > 0) {
         alert("Already Add in wishlist");
-       
-        
       } else {
         const res = await axios.post(
-          `http://localhost:8080/wishlist/add/${user._id}`,
+          `https://dailybackend.onrender.com/wishlist/add/${user._id}`,
           data
         );
         const newdata = [...wishlist, data];
@@ -94,11 +109,11 @@ export default function SingleProduct() {
     const cartlist = cartdata.filter((elem) => elem._id === data._id);
     try {
       if (cartlist.length > 0) {
-        alert("Already Add in Cart");
         setcartlist(true);
+        alert("Already Add in Cart");
       } else {
         const res = await axios.post(
-          `http://localhost:8080/cart/add/${user._id}`,
+          `https://dailybackend.onrender.com/cart/add/${user._id}`,
           data
         );
         const newdata = [...cartdata, data];
@@ -137,7 +152,7 @@ export default function SingleProduct() {
             {whit ? (
               <BsHeartFill
                 className={`${Styles.icon} ${Styles.icon2}`}
-                onClick={addtowislist}
+                onClick={deleteitem}
               />
             ) : (
               <BsHeart
@@ -161,19 +176,23 @@ export default function SingleProduct() {
                 h="20px"
               />
             </HStack>
-            {cartlists ? <Button
-              onClick={()=>navigate("/cart")}
-              disabled={data.stocks <= 0 ? true : false}
-              className={data.stocks <= 0 ? Styles.btn1 : Styles.btn}
-            >
-              GO TO CART
-            </Button>:<Button
-               onClick={addtocart}
-              disabled={data.stocks <= 0 ? true : false}
-              className={data.stocks <= 0 ? Styles.btn1 : Styles.btn}
-            >
-              {data.stocks <= 0 ? "NOTIFY SOON" : "ADD TO CART"}
-            </Button>}
+            {cartlists ? (
+              <Button
+                onClick={() => navigate("/cart")}
+                disabled={data.stocks <= 0 ? true : false}
+                className={data.stocks <= 0 ? Styles.btn1 : Styles.btn}
+              >
+                GO TO CART
+              </Button>
+            ) : (
+              <Button
+                onClick={addtocart}
+                disabled={data.stocks <= 0 ? true : false}
+                className={data.stocks <= 0 ? Styles.btn1 : Styles.btn}
+              >
+                {data.stocks <= 0 ? "NOTIFY SOON" : "ADD TO CART"}
+              </Button>
+            )}
           </Box>
         </Box>
       ) : (

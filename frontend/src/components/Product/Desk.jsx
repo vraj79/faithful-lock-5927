@@ -8,7 +8,7 @@ export default function Desk() {
     const [query, setQuery] = useState("");
     const [sortdata, setSortdata] = useState("");
     const [page, setPage] = useState(1);
-    let url=`http://localhost:8080/products?page=${page}&category=desks&sort=${sortdata}`;
+    let url=`https://dailybackend.onrender.com/products?page=${page}&category=desks&sort=${sortdata}`;
     let { loading, error, list } = useFetch(query, page,url);
     const loader = useRef(null);
     const handleObserver = useCallback((entries) => {

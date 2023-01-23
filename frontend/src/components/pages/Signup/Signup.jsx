@@ -22,7 +22,7 @@ const Signup = () => {
   const Handlesubmit=(e)=>{
     e.preventDefault()
     
-    fetch("http://localhost:8080/user/register",{
+    fetch("https://dailybackend.onrender.com/user/register",{
       method:"POST",
       body:JSON.stringify(signup),
       headers:{

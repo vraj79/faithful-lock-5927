@@ -1,0 +1,26 @@
+.addform {
+    width: 90%;
+    /* border: 1px solid black; */
+    margin: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    gap: 2vh;
+    padding: 2vh 3vh;
+    margin-bottom: 30px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  .main4 {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .main4 > p {
+    font-weight: 500;
+  }
+  .main4 > div > button {
+    height: 33px;
+  }
+  

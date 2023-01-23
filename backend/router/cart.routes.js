@@ -41,10 +41,10 @@ const deleteProduct=async(req,res,next)=>{
             let user = await userModel.findById({_id:userId});
             let cart = user.cartitem;
             console.log("this is from cart and this is old user:- " , user  , cart);
-            cart = cart.filter((elem) => {
+            newcart = cart.filter((elem) => {
                 return elem._id !== req.body._id;
             });
-            await userModel.findByIdAndUpdate({_id:userId},{cartitem:cart});
+            await userModel.findByIdAndUpdate({_id:userId},{cartitem:newcart});
             let sameuser = await userModel.findById({_id:userId});
             console.log("this is from cart and this is new user:- " , sameuser);
         } catch (error) {
