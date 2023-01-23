@@ -3,7 +3,6 @@ import {
   Button,
   HStack,
   Image,
-  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -214,4 +213,3 @@ export default function SingleProduct() {
     </>
   );
 }
-// jjkj
