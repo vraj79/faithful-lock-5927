@@ -23,4 +23,4 @@ export const Userlogin = (creds) => async (dispatch) => {
 
 export const logoutUser = () => (dispatch) => {
   dispatch({ type: LOGOUT_USER_SUCCESS });
-};
+}
