@@ -117,20 +117,23 @@ export default function SingleProduct() {
           display={{ lg: "flex", md: "flex", base: "block" }}
           className={Styles.main}
         >
-          <Box>
+          <Box width={{lg:"50%",md:"50%",base:"100%"}}>
             <Image src={data.img1} ref={ref} />
-            <HStack>
+            <HStack width={{lg:"80%",md:"90%",base:"90%"}}>
               <Image
                 src={data.img1}
                 onClick={() => {
                   ref.current.src = data.img1;
                 }}
+                width={{lg:"30%",md:"45%",base:"30%"}}
               />
               <Image
                 src={data.img2}
                 onClick={() => {
                   ref.current.src = data.img2;
                 }}
+                width={{lg:"30%",md:"45%",base:"30%"}}
+
               />
             </HStack>
             {whit ? (
@@ -145,13 +148,15 @@ export default function SingleProduct() {
               />
             )}
           </Box>
-          <Box>
+          <Box width={{lg:"50%",md:"50%",base:"100%"}}>
             <Text as="h2">{data.title}</Text>
+            <Box display={{lg:"flex"}}>
             <HStack>
-              <Text as="h3">₹.{data.price}</Text>
-              <Text as="h3">{data.strike}</Text>
-              <Text as="p">Inclusive of all taxes</Text>
+              <Text as="h3" fontSize={{lg:"2rem",md:"1.75rem",base:"1.75rem"}}>₹.{data.price}</Text>
+              <Text as="h3" fontSize={{lg:"2rem",md:"1.75rem",base:"1.5rem"}}>{data.strike}</Text>
             </HStack>
+              <Text as="p"  fontSize={{lg:"1rem",md:"1rem",base:"1rem"}}>Inclusive of all taxes</Text>
+            </Box>
             <HStack>
               <Text as="p">Extra 10% cashback upto INR 500 with</Text>
               <Image
