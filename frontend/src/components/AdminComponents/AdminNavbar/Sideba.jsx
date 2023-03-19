@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, CloseButton, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, CloseButton, Flex, Image } from "@chakra-ui/react";
 import {
   FiShoppingCart,
   FiTrendingUp,

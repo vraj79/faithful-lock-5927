@@ -84,7 +84,7 @@ const MobileNav = ({ onOpen }) => {
                   ml="2"
                 >
                   <Text fontSize="sm">
-                    {data.first_name || admin[0].first_name}{" "}
+                    {data.first_name || admin[0].first_name}
                     {data.last_name || admin[0].last_name}
                   </Text>
                   <Text fontSize="xs" color="gray.600">
